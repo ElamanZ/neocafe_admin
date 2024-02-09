@@ -32,6 +32,8 @@ function LoginPage(props) {
     const clickLogBtn = () => {
         return console.log(loginData)
     }
+
+
     return (
         <>
             <div className={styles.loginBlock}>
@@ -58,7 +60,7 @@ function LoginPage(props) {
                                         onClick={togglePasswordVisibility}
                                     />
                                 </div>
-                                <button onClick={clickLogBtn} className={styles.btn_login}>Войти</button>
+                                <button onClick={clickLogBtn} disabled={adminValue==='' || passwordValue===''} className={styles.btn_login}>Войти</button>
                             </form>
                         </div>
                     </div>
