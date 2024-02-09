@@ -1,44 +1,65 @@
 import React, {useState} from 'react';
-import styles from './login.module.scss'
+import styles from './loginPage.module.scss'
 import {useForm} from "react-hook-form";
 
 import eyeIcon from "../../assets/images/login/Eye.svg";
 import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";
 import login_picture from "../../assets/images/login/LoginPicture.png"
-function Login(props) {
+function LoginPage(props) {
 
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
     const inputType = showPassword ? 'text' : 'password';
 
+    const [adminValue, setAdminValue] = useState('')
+    const [passwordValue, setPasswordValue] = useState('')
 
+    const handleChangeAdminValue = (e) => {
+        setAdminValue(e.target.value)
+    }
+
+    const handleChangePasswordValue = (e) => {
+        setPasswordValue(e.target.value)
+    }
+
+    const loginData = {
+        login: adminValue,
+        password: passwordValue
+    }
+
+    const clickLogBtn = () => {
+        return console.log(loginData)
+    }
     return (
         <>
             <div className={styles.loginBlock}>
                 <div className={styles.login__content}>
-                    <div style={{width: '100%'}}>
+                    <div className={styles.login_item}>
                         <div className={styles.content_title}>
                             <span className={styles.black}>neo</span>
                             <span className={styles.primary}>cafe</span>
                         </div>
                         <div className={styles.login}>
                             <h1>Вход</h1>
-                            <input type="text" placeholder="Логин" className={styles.input_login}/>
-                            <div className={styles.login_passwordInput}>
-                                <input
-                                    type={inputType}
-                                    placeholder="Пароль"
-                                />
-                                <img
-                                    src={showPassword ? eyeIcon : eyeIconNoVisible}
-                                    alt="eyeIcon"
-                                    onClick={togglePasswordVisibility}
-                                />
-                            </div>
-                            <button className={styles.btn_login} disabled={true}>Войти</button>
+                            <form className={styles.login_form}>
+                                <input type="text" placeholder="Логин" value={adminValue} onChange={handleChangeAdminValue} className={styles.input_login}/>
+                                <div className={styles.login_passwordInput}>
+                                    <input
+                                        type={inputType}
+                                        placeholder="Пароль"
+                                        value={passwordValue}
+                                        onChange={handleChangePasswordValue}
+                                    />
+                                    <img
+                                        src={showPassword ? eyeIcon : eyeIconNoVisible}
+                                        alt="eyeIcon"
+                                        onClick={togglePasswordVisibility}
+                                    />
+                                </div>
+                                <button onClick={clickLogBtn} className={styles.btn_login}>Войти</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -50,4 +71,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default LoginPage;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "../components/layout/Layout.jsx";
-import Menu from "../pages/Menu/Menu.jsx";
-import Login from "../pages/Login/Login.jsx";
+import MenuPage from "../pages/MenuPage/MenuPage.jsx";
+import LoginPage from "../pages/LoginPage/LoginPage.jsx";
 import PrivateRoute from './PrivateRoute';
 import Dashboard from "../components/Dashboard/Dashboard.jsx";
 
@@ -12,8 +12,8 @@ function AppRoutes({ isAuthenticated }) {
             <Layout>
                 <Routes>
                     <Route path="/dashboard" element={<PrivateRoute component={Dashboard} isAuthenticated={isAuthenticated} />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/menu" element={<Menu />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/menu" element={<MenuPage />} />
                 </Routes>
             </Layout>
         </Router>
