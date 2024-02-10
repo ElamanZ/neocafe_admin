@@ -1,12 +1,11 @@
-// PrivateRoute.jsx
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
+const PrivateRoute = ({ element: Element, isAuthenticated, ...rest }) => {
     return (
         <Route
             {...rest}
-            element={isAuthenticated ? <Component /> : <Navigate to="/login" />}
+            element={isAuthenticated ? <Element /> : <Navigate to="/login" />}
         />
     );
 };

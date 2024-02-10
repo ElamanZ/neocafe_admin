@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styles from './loginPage.module.scss'
-import {useForm} from "react-hook-form";
 
 import eyeIcon from "../../assets/images/login/Eye.svg";
 import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";

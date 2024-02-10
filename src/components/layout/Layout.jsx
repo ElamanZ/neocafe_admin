@@ -1,15 +1,15 @@
 // Layout.jsx
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import Header from "../Header/Header.jsx";
+import AppHeader from "../AppHeader/AppHeader.jsx";
 
 function Layout({ children }) {
-    const location = useLocation();
-    const isLoginPage = location.pathname === '/login';
+    // const location = useLocation();
+    // const isLoginPage = location.pathname === '/login';
 
     return (
         <>
-            {!isLoginPage && <Header />}
+            {/*{!isLoginPage && <AppHeader />}*/}
             {children}
         </>
     );
