@@ -1,68 +1,88 @@
 import React, { useState } from 'react';
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 import styles from "../AppHeader/appHeaader.module.scss";
 import searchBtn from "../../assets/images/appHeader/mdi_searchBtn.svg";
 import createBtnPlus from "../../assets/images/appHeader/createBtnPlus.svg";
 import notice from "../../assets/images/appHeader/mdi_notice.svg";
+import closeIcon from "../../assets/images/appHeader/mdi_close.svg";
+import closeIconBlack from "../../assets/images/appHeader/mdi_closeBlack.svg";
 
-const headerStyle = {
-    color: '#2A3440',
-    height: 100,
-    padding: 24,
-    lineHeight: '64px',
-    backgroundColor: '#FFFFFF',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    position: "relative"
-};
+const noticeDataList = [
+    {
+        id: 1,
+        data: 25.09,
+        time: 14.10,
+        fewProducts: "Молоко",
+        branch: "NeoCafe Dzerzhinka"
+    },
+    {
+        id: 2,
+        data: 27.09,
+        time: 11.53,
+        fewProducts: "Сахар",
+        branch: "NeoCafe Gogolya"
+    },
+    {
+        id: 3,
+        data: 28.09,
+        time: 10.30,
+        fewProducts: "Хлеб",
+        branch: "NeoCafe Pushkina"
+    },
+    {
+        id: 4,
+        data: 29.09,
+        time: 12.45,
+        fewProducts: "Картофель",
+        branch: "NeoCafe Tolstogo"
+    },
+    {
+        id: 5,
+        data: 30.09,
+        time: 15.20,
+        fewProducts: "Яйца",
+        branch: "NeoCafe Chekhova"
+    },
+    {
+        id: 6,
+        data: 11.10,
+        time: 19.00,
+        fewProducts: "Масло",
+        branch: "NeoCafe Lermontova"
+    }
+];
 
-// function Notification({ onClose }) {
-//     const [messages, setMessages] = useState([
-//         { id: 1, dateTime: "10 февраля 2024, 15:30", text: "Сообщение 1" },
-//         { id: 2, dateTime: "10 февраля 2024, 15:32", text: "Сообщение 2" }
-//     ]);
-//
-//     const clearMessages = () => {
-//         setMessages([]);
-//     };
-//
-//     const removeMessage = (id) => {
-//         setMessages(messages.filter(msg => msg.id !== id));
-//     };
-//
-//     return (
-//         <div className={styles.notification}>
-//             <div>Уведомления</div>
-//             <Button type="primary" size="small" onClick={clearMessages}>Очистить</Button>
-//             <div className={styles["close-button"]} onClick={onClose}>X</div>
-//             <div style={{ marginTop: '16px' }}>
-//                 {messages.map(msg => (
-//                     <div key={msg.id} className={styles.message}>
-//                         <div>Дата и время: {msg.dateTime}</div>
-//                         <div>{msg.text} <span className={styles["close-button"]} onClick={() => removeMessage(msg.id)}>X</span></div>
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }
 
 function AppHeader(props) {
-    // const [showNotification, setShowNotification] = useState(false);
-    //
-    // const toggleNotification = () => {
-    //     setShowNotification(!showNotification);
-    // };
     const [isOpenNotification, setIsOpenNotification] = useState(false)
+    const [isOpenNotificationList, setIsOpenNotificationList] = useState(false)
+    const [notificationList, setNotificationList] = useState(noticeDataList);
+
+    const openNotification = () => {
+        setIsOpenNotification(!isOpenNotification)
+    }
+
+    const closeNotificationList = (id) => {
+        const updatedNotificationList = notificationList.filter(item => item.id !== id);
+        setNotificationList(updatedNotificationList);
+    }
+
+    const closeAllNotificationList = () => {
+        setNotificationList([]);
+    }
+
+    const handleClick = (id) => {
+        console.log(`Элемент с id ${id} был кликнут!`);
+    };
+
     return (
-        <Layout.Header style={headerStyle}>
+        <Layout.Header className={styles.header}>
             <h1 className={styles.header__title}>
                 Меню
             </h1>
             <div className={styles.header__block}>
-                <div className={styles.header__input}>
-                    <button className={styles.header__input_searchBtn}>
+                <div className={styles.header__searchBlock}>
+                    <button className={styles.header__searchBtn}>
                         <img src={searchBtn} alt="searchBtn"/>
                     </button>
                     <input type="text" placeholder="Поиск"/>
@@ -71,36 +91,55 @@ function AppHeader(props) {
                     Создать
                     <img src={createBtnPlus} alt="createBtnPlus"/>
                 </button>
-                <button className={styles.header__noticeBtn} onClick={() => setIsOpenNotification(!isOpenNotification)}>
+                <button className={`${styles.header__noticeBtn} ${isOpenNotification ? styles.noticeBtn_active : ''}`} onClick={openNotification}>
                     <img src={notice} alt="notice"/>
                 </button>
-                {/*<button className={`${styles.header__noticeBtn} ${showNotification ? styles.noticeBtn_active : ''}`} onClick={toggleNotification}>*/}
-                {/*    <img src={notice} alt="notice"/>*/}
-                {/*</button>*/}
             </div>
-            {/*{showNotification && <Notification onClose={toggleNotification} />}*/}
 
-            <div className={`styles.notificationBlock ${isOpenNotification ? "active" : ''}`}>
-                <div className={styles.notificationBlock__header}>
+            <div className={`${styles.notificationBlock} ${isOpenNotification ? styles.notificationBlock_active : ''}`}>
+                <div className={styles.notificationBlock__titleBlock}>
+                    <div></div>
                     <h3>Уведомления</h3>
-                    <button>x</button>
+                    <button onClick={openNotification}>
+                        <img src={closeIcon} alt="closeIcon"/>
+                    </button>
                 </div>
-                <button>Очистить</button>
-                <ul className={styles.notificationMessages}>
-                    <li className={styles.notificationMessage}>
-                        <div className={styles.notificationMessage__info}>
-                            <div className={styles.notificationMessage__data}>
-                                <span>25.10</span>
-                                <div>*</div>
-                                <span>14.09</span>
-                            </div>
-                            <button>x</button>
-                        </div>
-                        <div>
-                            <div className={styles.notificationMessage__text}>Заканчивается продукт: <span className={styles.notificationMessage__product}>Молоко</span></div>
-                            <div className={styles.notificationMessage__text}>Филиал: <span className={styles.notificationMessage__product}>NeoCafe Dzerzhinka</span></div>
-                        </div>
-                    </li>
+
+                <div className={styles.notificationBlock__clearBtnBlock}>
+                    <button onClick={closeAllNotificationList} className={styles.notificationBlock__clearBtn}>Очистить</button>
+                </div>
+                <ul className={styles.notificationBlock__innerBlock}>
+                    {notificationList.length === 0 ? (
+                        <h3 className={styles.notificationBlock__noNotifications}>Уведомлений нет</h3>
+                    ) : (
+                        notificationList.map(noticeData => (
+                            <li
+                                id={noticeData.id}
+                                onClick={() => handleClick(noticeData.id)}
+                                key={noticeData.id}
+                                className={`${styles.notificationBlock__list} ${
+                                    isOpenNotificationList ? styles.notificationBlock__list_active : ''
+                                }`}
+                            >
+                                <div className={styles.notificationBlock__info}>
+                                    <div className={styles.notificationBlock__data}>
+                                        <span>{noticeData.data}</span>
+                                        <span className={styles.notificationBlock__data_marker}>&bull;</span>
+                                        <span>{noticeData.time}</span>
+                                    </div>
+                                    <button onClick={() => closeNotificationList(noticeData.id)}>
+                                        <img src={closeIconBlack} alt="closeIconBlack" />
+                                    </button>
+                                </div>
+                                <div className={styles.notificationBlock__listText}>
+                                    Заканчивается продукт: <span className={styles.notificationBlock__listText_blue}>{noticeData.fewProducts}</span>
+                                </div>
+                                <div className={styles.notificationBlock__listText}>
+                                    Филиал: <span className={styles.notificationBlock__listText_blue}>{noticeData.branch}</span>
+                                </div>
+                            </li>
+                        ))
+                    )}
                 </ul>
             </div>
         </Layout.Header>

@@ -46,6 +46,7 @@ function AppSider(props) {
                             {item.label}
                         </li>
                     ))}
+
                 </ul>
                 <div className={styles.sider__buttonExit}>
 

@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "../components/layout/Layout.jsx";
 import MenuPage from "../pages/MenuPage/MenuPage.jsx";
 import LoginPage from "../pages/LoginPage/LoginPage.jsx";
-import PrivateRoute from './PrivateRoute';
-import Dashboard from "../components/Dashboard/Dashboard.jsx";
 import MainPage from "../pages/MainPage/MainPage.jsx";
 
 function AppRoutes({ isAuthenticated }) {
@@ -12,7 +10,6 @@ function AppRoutes({ isAuthenticated }) {
         <Router>
             <Layout>
                 <Routes>
-                    <Route path="/dashboard" element={<PrivateRoute component={Dashboard} isAuthenticated={isAuthenticated} />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/main" element={<MainPage />} />
                     <Route path="/" element={<MainPage />} />
