@@ -17,11 +17,7 @@ body {
   background: #FFFFFF;
   font-family: 'Poppins', sans-serif;
 }
-.container {
-  width: 940px;
-  max-width: 100%;
-  margin: 0 auto;
-}
+
 a {
   text-decoration: none;
   color: unset;
