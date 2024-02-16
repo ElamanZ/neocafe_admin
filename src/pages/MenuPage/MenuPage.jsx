@@ -1,133 +1,119 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'antd';
 import styles from '../MenuPage/menuPage.module.scss'
+import dots_icon from "../../assets/images/table/mdi_dots-vertical.svg"
 function MenuPage() {
-    const [loading, setLoading] = useState(false);
-    const [dataSources, setDataSources] = useState([]);
 
-    // useEffect(() => {
-    //     setLoading(true);
-    //     fetch('https://jsonplaceholder.typicode.com/posts')
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setDataSource(data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         });
-    // }, []);
-
-    const dataSource = [
+    const tableHeadDatas = [
         {
-            key: '1',
             id: 1,
-            title: 'Кофе "Латте"',
-            category: 'Кофе',
-            content: 'Кофе, молоко, ванильный сироп',
-            price: 150,
-            branch: 'NeoCafe Dzerzhinka',
+            title: "Наименование"
         },
         {
-            key: '2',
             id: 2,
-            title: 'Чизкейк Нью-Йорк',
-            category: 'Десерты',
-            content: 'Сыр, сахар, мука, яйца',
-            price: 200,
-            branch: 'NeoCafe Gogolya',
+            title: "Категория"
         },
         {
-            key: '3',
             id: 3,
-            title: 'Пирожное Эклер',
-            category: 'Выпечка',
-            content: 'Сливки, мука, яйца, сахар',
-            price: 120,
-            branch: 'NeoCafe Pushkina',
+            title: "Состав блюда и граммовка"
         },
         {
-            key: '4',
             id: 4,
-            title: 'Чай "Английский завтрак"',
-            category: 'Кофе',
-            content: 'Черный чай, молоко',
-            price: 100,
-            branch: 'NeoCafe Tolstogo',
+            title: "Стоимость"
         },
         {
-            key: '5',
             id: 5,
-            title: 'Брауни',
-            category: 'Десерты',
-            content: 'Шоколад, масло, мука, яйца',
+            title: "Филиал"
+        }
+    ]
+    const tableBodyDatas = [
+        {
+            id: 1,
+            name: 'Капучино',
+            category: 'Кофе',
+            ingredients: 'Молоко (70мл), Кофе (15 зерен)',
+            price: 140,
+            branch: 'NeoCafe Ala-Too Square',
+        },
+        {
+            id: 2,
+            name: 'Американо',
+            category: 'Кофе',
+            ingredients: 'Молоко (70мл), Кофе (15 зерен)',
             price: 180,
-            branch: 'NeoCafe Chekhova',
+            branch: 'NeoCafe Ala-Too Square',
         },
         {
-            key: '6',
+            id: 3,
+            name: 'Латте',
+            category: 'Кофе',
+            ingredients: 'Молоко (100мл), Кофе (30мл)',
+            price: 160,
+            branch: 'NeoCafe Central',
+        },
+        {
+            id: 4,
+            name: 'Чай черный',
+            category: 'Чай',
+            ingredients: 'Чай (200мл), Лимон (1 долька), Сахар (по вкусу)',
+            price: 120,
+            branch: 'NeoCafe Bishkek Park',
+        },
+        {
+            id: 5,
+            name: 'Каппучино',
+            category: 'Кофе',
+            ingredients: 'Молоко (150мл), Кофе (20 гр)',
+            price: 150,
+            branch: 'NeoCafe Ala-Too Square',
+        },
+        {
             id: 6,
-            title: 'Пирог "Яблочный"',
-            category: 'Выпечка',
-            content: 'Яблоки, мука, сахар, масло',
-            price: 130,
-            branch: 'NeoCafe Lermontova',
-        },
-    ];
-
-
-    const columns = [
-        {
-            key: 'id',
-            dataIndex: 'id',
-            title: '№',
-        },
-        {
-            key: 'title',
-            dataIndex: 'title',
-            title: 'Наименование',
-        },
-        {
-            key: 'category',
-            dataIndex: 'category',
-            title: 'Категория',
-            filters: [
-                { text: 'Кофе', value: 'Кофе' },
-                { text: 'Десерты', value: 'Десерты' },
-                { text: 'Выпечка', value: 'Выпечка' },
-            ],
-            onFilter: (value, record) => record.category.includes(value),
-        },
-        {
-            key: 'content',
-            dataIndex: 'content',
-            title: 'Состав блюда и граммовка',
-        },
-        {
-            key: 'price',
-            dataIndex: 'price',
-            title: 'Стоимость',
-        },
-        {
-            key: 'branch',
-            dataIndex: 'branch',
-            title: 'Филиал',
+            name: 'Эспрессо',
+            category: 'Кофе',
+            ingredients: 'Кофе (30мл)',
+            price: 100,
+            branch: 'NeoCafe Central',
         },
     ];
 
     return (
-        <>
-            <header className={styles.table__header}>
-                <Table
-                    loading={loading}
-                    columns={columns}
-                    dataSource={dataSource}
-                    className={styles.table__header}
-                />
-            </header>
-        </>
+        <div className={styles.tableBlock}>
+            <table className={styles.table}>
+                <thead>
+                <tr>
+                    <th className={styles.table__numSymbol}>№</th>
+                    {tableHeadDatas.map((tableHeadData, index) => (
+                        <th key={index}>{tableHeadData.title}</th>
+                    ))}
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    tableBodyDatas.map ((tableBodyData, index) => (
+                        <tr key={index}>
+                            <td className={styles.table__numSymbol}>№{index+1}</td>
+                            <td>{tableBodyData.name}</td>
+                            <td>{tableBodyData.category}</td>
+                            <td>{tableBodyData.ingredients}</td>
+                            <td>{tableBodyData.price}</td>
+                            <td>{tableBodyData.branch}</td>
+                            <td>
+                                <button className={styles.table__btn}>
+                                    <img src={dots_icon} alt="dots_icon"/>
+                                </button>
+                            </td>
+                        </tr>
+                    ))
+                }
+                </tbody>
+            </table>
+            <div className={styles.tableBlock__paginationBlock}>
+                <div className={styles.tableBlock__pagination}>
+                    table__pagination
+                </div>
+            </div>
+        </div>
     );
 }
 

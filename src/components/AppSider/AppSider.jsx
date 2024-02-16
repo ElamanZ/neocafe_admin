@@ -35,6 +35,7 @@ function AppSider(props) {
                 <span className={styles.primary}>cafe</span>
             </div>
             <div style={{display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 'calc(100vh - 128px)' }}>
+                {/*переделать на NAV*/}
                 <ul className={styles.menuList}>
                     {menuItems.map(item => (
                         <li
@@ -56,6 +57,7 @@ function AppSider(props) {
                     </button>
                 </div>
             </div>
+
 
         </Layout.Sider>
     );
