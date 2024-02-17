@@ -1,6 +1,7 @@
 .header {
   color: #2A3440;
-  height: 100px;
+  max-height: 100px;
+  height: 100%;
   padding: 24px;
   line-height: 22px;
   background-color: #FFFFFF;
@@ -103,37 +104,6 @@
 .noticeBtn_active:hover {
   background-color: #f67c62;
 }
-
-
-
-//.notification {
-//  background-color: orange;
-//  border: 1px solid orange;
-//  width: 440px;
-//  position: absolute;
-//  bottom: 124px;
-//  right: 0;
-//  padding: 16px;
-//  z-index: 999;
-//  transition: bottom 0.3s;
-//
-//  .close-button {
-//    cursor: pointer;
-//  }
-//
-//  .message {
-//    background-color: white;
-//    border: 1px solid #ddd;
-//    border-radius: 4px;
-//    padding: 8px;
-//    margin-bottom: 8px;
-//
-//    .close-button {
-//      float: right;
-//      cursor: pointer;
-//    }
-//  }
-//}
 
 .notificationBlock {
   position: absolute;
@@ -273,5 +243,11 @@
   }
 }
 
-
+@media (max-height: 850px) {
+  .header {
+    padding: 20px 24px;
+    max-height: 80px;
+    height: 100%;
+  }
+}
 

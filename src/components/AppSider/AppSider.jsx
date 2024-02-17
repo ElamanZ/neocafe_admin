@@ -6,20 +6,14 @@ import branchesIcon from "../../assets/images/appSlider/mdi_branches.svg"
 import employeesIcon from "../../assets/images/appSlider/mdi_employees.svg"
 import exitIcon from "../../assets/images/appSlider/mdi_exit.svg"
 import styles from "../AppSider/AppSider.module.scss";
+import {menuItems} from "../../assets/utils/data.js"
 
 const siderStyle = {
     color: '#fff',
     backgroundColor: '#35536B',
 };
 
-const menuItems = [
-    { id: 'menu', label: 'Меню', img: menuIcon},
-    { id: 'warehouse', label: 'Склад', img: warehouseIcon},
-    { id: 'branches', label: 'Филиалы', img: branchesIcon},
-    { id: 'employees', label: 'Сотрудники', img: employeesIcon},
 
-
-];
 
 function AppSider(props) {
     const [activeItem, setActiveItem] = useState(menuItems[0].id);
@@ -29,12 +23,12 @@ function AppSider(props) {
     };
 
     return (
-        <Layout.Sider width="18%" style={siderStyle}>
+        <Layout.Sider width="15%" style={siderStyle}>
             <div className={styles.sider__title}>
                 <span className={styles.white}>neo</span>
                 <span className={styles.primary}>cafe</span>
             </div>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 'calc(100vh - 128px)' }}>
+            <div className={styles.menuBlock}>
                 {/*переделать на NAV*/}
                 <ul className={styles.menuList}>
                     {menuItems.map(item => (

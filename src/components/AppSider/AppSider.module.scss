@@ -1,3 +1,15 @@
+//.siderStyle {
+//  color: #35536B;
+//  background-color: #35536B;
+//  width: 18%;
+//}
+
+.menuBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 120px);
+}
 .sider__title {
   font-size: 32px;
   font-family: 'Yaro', sans-serif;
@@ -6,6 +18,9 @@
 
   @media screen and (max-width: 1120px) {
     font-size: 28px;
+  }
+  @media (max-height: 850px) {
+    padding: 32px 42px 34px;
   }
 }
 .white {
@@ -67,7 +82,7 @@
     transition: background-color 0.1s;
     font-size: 18px;
     font-weight: 500;
-    margin-bottom: 56px;
+    margin-bottom: 10px;
     img {
       margin-right: 10px;
     }

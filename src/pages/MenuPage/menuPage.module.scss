@@ -3,7 +3,7 @@
   border-radius: 20px;
   background-color: #FFFFFF;
   box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.07);
-
+  position: relative;
   &__paginationBlock {
     padding: 40px 0 24px;
     display: flex;
@@ -23,11 +23,12 @@
 
   th, td {
     text-align: start;
-    padding: 30px 32px 30px 32px;
+    padding: 30px 2px 30px 32px;
   }
 
   th {
     border-bottom: 1px #35536B solid;
+    line-height: 32px;
   }
   td {
     font-weight: 500;
@@ -58,10 +59,50 @@
 }
 @media (max-height: 850px) {
   .tableBlock__paginationBlock {
-    padding: 35px 0 20px;
+    padding: 28px 0 17px;
+  }
+  .tableBlock__pagination {
+    height: 40px;
   }
   .table th, .table td {
-    padding: 25px 27px 25px 27px;
-    }
+    padding: 18px 8px 18px 24px;
+  }
+}
+.categoryDropdown {
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 7px;
+  }
+}
+.dropdownToggle {
+  position: relative;
+}
+.dropdownItem {
+  padding: 5px; // Добавляем немного отступов для элементов выпадающего списка
+  position: relative; // Относительное позиционирование для иконки удаления
 }
 
+.deleteIcon {
+  position: absolute; // Абсолютное позиционирование для иконки удаления
+  top: 50%; // Размещаем иконку по вертикали посередине элемента
+  right: 5px; // Размещаем иконку справа с отступом
+  transform: translateY(-50%); // Корректируем положение иконки по вертикали
+  opacity: 0; // Скрываем иконку по умолчанию
+  transition: opacity 0.3s; // Добавляем плавный переход для анимации появления и исчезновения иконки
+}
+
+.dropdownItem:hover .deleteIcon {
+  opacity: 1; // Показываем иконку при наведении на элемент
+}
+.dropdownMenu {
+  text-align: center;
+  border-radius: 10px;
+  position: absolute; // Абсолютное позиционирование для точного позиционирования блока
+  top: 50px; // Размещаем блок сразу под кнопкой
+  width: max-content; // Ширина блока равна ширине содержимого (размеру текста кнопки)
+  background-color: #EBEFF2; // Синий фон для выпадающего блока
+  z-index: 1; // Помещаем блок поверх остального контента
+}
