@@ -3,13 +3,17 @@ import styles from '../MenuPage/menuPage.module.scss';
 import dots_icon from '../../assets/images/table/mdi_dots-vertical.svg';
 import { MenuHeadDatas } from '../../assets/utils/data.js';
 import { tableBodyDatas } from '../../assets/utils/data.js';
+import { categoryData } from '../../assets/utils/data.js';
 import plusIcon from '../../assets/images/table/mdi_plus.svg';
 import downIcon from '../../assets/images/table/downIcon.svg';
 import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 
 function MenuPage() {
-    const [categories, setCategories] = useState(['Категория 1', 'Категория 2', 'Категория 3']);
+
+    const [categories, setCategories] = useState(categoryData);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+
 
     const handleDelete = (index) => {
         const updatedCategories = [...categories];
@@ -17,63 +21,29 @@ function MenuPage() {
         setCategories(updatedCategories);
     };
 
-    const handleAdd = () => {
-        // Добавляем новую категорию только если она не пустая
-        if (newCategory.trim() !== '') {
-            setCategories([...categories, newCategory]);
-        }
-    };
-
     return (
         <div className={styles.tableBlock}>
             <table className={styles.table}>
                 <thead>
                 <tr>
-                    {/*<th className={styles.table__numSymbol}>№</th>*/}
-                    {/*{MenuHeadDatas.map((tableHeadData, index) => (*/}
-                    {/*    <th key={index}>{tableHeadData.title}</th>*/}
-                    {/*))}*/}
-                    {/*<th>*/}
-                    {/*    /!* Вставляем кнопку для отображения списка категорий *!/*/}
-                    {/*    <button className={styles.dropdownToggle} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>*/}
-                    {/*        Категории <img className={styles.addIcon} src={plusIcon} alt="plusIcon" />*/}
-                    {/*    </button>*/}
-                    {/*    /!* Показываем выпадающий список категорий только если isDropdownOpen true *!/*/}
-                    {/*    {isDropdownOpen && (*/}
-                    {/*        <div className={styles.dropdownMenu}>*/}
-                    {/*            {categories.map((category, index) => (*/}
-                    {/*                <div className={styles.dropdownItem} key={index} onClick={() => handleDelete(index)}>*/}
-                    {/*                    {category}*/}
-                    {/*                    <img className={styles.deleteIcon} src={trashIcon} alt="trashIcon" />*/}
-                    {/*                </div>*/}
-                    {/*            ))}*/}
-                    {/*            /!* Добавляем кнопку для добавления новой категории *!/*/}
-                    {/*            <button className={styles.addCategoryButton} onClick={handleAdd}>*/}
-                    {/*                Добавить категорию*/}
-                    {/*            </button>*/}
-                    {/*        </div>*/}
-                    {/*    )}*/}
-                    {/*</th>*/}
-                    {/*<th></th>*/}
                     <th className={styles.table__numSymbol}>№</th>
                     <th>Наименование</th>
                     <th className={styles.categoryDropdown}>
                         Категории
-                        <button className={styles.dropdownToggle} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                            <img className={styles.downIcon} src={downIcon} alt="downIcon" />
+                        <button className={styles.categoryDropdown__toggle} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                            <img src={downIcon} alt="downIcon" />
                         </button>
-                        {/* Показываем выпадающий список категорий только если isDropdownOpen true */}
                         {isDropdownOpen && (
-                            <div className={styles.dropdownMenu}>
+                            <div className={styles.categoryDropdown__menu}>
                                 {categories.map((category, index) => (
-                                    <div className={styles.dropdownItem} key={index} onClick={() => handleDelete(index)}>
+                                    <div className={styles.categoryDropdown__item} key={index} >
                                         {category}
-                                        <img className={styles.deleteIcon} src={trashIcon} alt="trashIcon" />
+                                        <img className={styles.categoryDropdown__deleteIcon} src={trashIcon} alt="trashIcon" onClick={() => handleDelete(index)}/>
                                     </div>
                                 ))}
-                                {/* Добавляем кнопку для добавления новой категории */}
-                                <button className={styles.addCategoryButton} onClick={handleAdd}>
-                                    Добавить категорию
+                                <button className={styles.categoryDropdown__addCategoryButton}>
+                                    Добавить
+                                    <img src={plusIcon} alt="plusIcon"/>
                                 </button>
                             </div>
                         )}

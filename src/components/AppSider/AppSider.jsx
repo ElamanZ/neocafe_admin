@@ -23,7 +23,7 @@ function AppSider(props) {
     };
 
     return (
-        <Layout.Sider width="15%" style={siderStyle}>
+        <Layout.Sider width="14%" style={siderStyle}>
             <div className={styles.sider__title}>
                 <span className={styles.white}>neo</span>
                 <span className={styles.primary}>cafe</span>

@@ -33,7 +33,7 @@
 
 .menuList {
   list-style-type: none;
-  padding: 0 32px;
+  padding: 0 20px;
 
   @media screen and (max-width: 1220px) {
     padding: 0 10px;
@@ -52,6 +52,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+
+  @media screen and (max-width: 1220px) {
+    font-size: 16px;
+  }
 }
 .menuItem__icon {
   margin-right: 10px;
@@ -61,7 +65,7 @@
 }
 
 .sider__buttonExit {
-  padding: 0 32px;
+  padding: 0 20px;
 
   @media screen and (max-width: 1220px) {
     padding: 0 10px;
