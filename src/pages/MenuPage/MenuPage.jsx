@@ -7,11 +7,15 @@ import { categoryData } from '../../assets/utils/data.js';
 import plusIcon from '../../assets/images/table/mdi_plus.svg';
 import downIcon from '../../assets/images/table/downIcon.svg';
 import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
+import editIcon from '../../assets/images/table/mdi_edit.svg';
+import deleteIcon from '../../assets/images/table/mdi_delete.svg';
 
 function MenuPage() {
 
     const [categories, setCategories] = useState(categoryData);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isOptionOpen, setIsOptionOpen] = useState(false);
+    const [selectedItemId, setSelectedItemId] = useState(null);
 
 
 
@@ -19,6 +23,13 @@ function MenuPage() {
         const updatedCategories = [...categories];
         updatedCategories.splice(index, 1);
         setCategories(updatedCategories);
+    };
+
+
+
+    const handleOptionOpen = (id) => {
+        setIsOptionOpen(!isOptionOpen)
+        setSelectedItemId(id);
     };
 
     return (
@@ -57,7 +68,7 @@ function MenuPage() {
                 </thead>
                 <tbody>
                 {tableBodyDatas.map((tableBodyData, index) => (
-                    <tr key={index}>
+                    <tr key={tableBodyData.id}>
                         <td className={styles.table__numSymbol}>№{index + 1}</td>
                         <td>{tableBodyData.name}</td>
                         <td>{tableBodyData.category}</td>
@@ -65,9 +76,24 @@ function MenuPage() {
                         <td>{tableBodyData.price}</td>
                         <td>{tableBodyData.branch}</td>
                         <td>
-                            <button className={styles.table__btn}>
+                            <button
+                                className={styles.table__btn}
+                                onClick={() => handleOptionOpen(tableBodyData.id)}
+                            >
                                 <img src={dots_icon} alt="dots_icon" />
                             </button>
+                            {isOptionOpen && selectedItemId === tableBodyData.id && (
+                                <div className={styles.optionBlock}>
+                                    <button className={styles.optionBlock__btnEdit}>
+                                        <img src={editIcon} alt="editIcon"/>
+                                        Редактировать
+                                    </button>
+                                    <button className={styles.optionBlock__btnDelete}>
+                                        <img src={deleteIcon} alt="deleteIcon"/>
+                                        Удалить
+                                    </button>
+                                </div>
+                            )}
                         </td>
                     </tr>
                 ))}

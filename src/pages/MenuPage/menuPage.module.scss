@@ -124,3 +124,36 @@
     }
   }
 }
+
+.optionBlock {
+  position: absolute;
+  width: 200px;
+  height: 88px;
+  border: 1px solid #5B7E9A;
+  border-radius: 8px;
+  right: 40px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  button {
+    outline: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 12px;
+    cursor: pointer;
+    img {
+      margin-right: 10px;
+    }
+  }
+  &__btnEdit {
+    border: none;
+    border-bottom: solid 1px #5B7E9A;
+  }
+  &__btnDelete {
+    border: none;
+  }
+}
