@@ -30,19 +30,21 @@ function AppSider(props) {
             </div>
             <div className={styles.menuBlock}>
                 {/*переделать на NAV*/}
-                <ul className={styles.menuList}>
-                    {menuItems.map(item => (
-                        <li
-                            key={item.id}
-                            className={`${styles.menuItem} ${activeItem === item.id ? styles.menuItem__active : ''}`}
-                            onClick={() => handleClick(item.id)}
-                        >
-                            <img src={item.img} alt={item.label} className={styles.menuItem__icon} />
-                            {item.label}
-                        </li>
-                    ))}
+                <div>
+                    <ul className={styles.menuList}>
+                        {menuItems.map(item => (
+                            <li
+                                key={item.id}
+                                className={`${styles.menuItem} ${activeItem === item.id ? styles.menuItem__active : ''}`}
+                                onClick={() => handleClick(item.id)}
+                            >
+                                <img src={item.img} alt={item.label} className={styles.menuItem__icon} />
+                                {item.label}
+                            </li>
+                        ))}
 
-                </ul>
+                    </ul>
+                </div>
                 <div className={styles.sider__buttonExit}>
 
                     <button>
