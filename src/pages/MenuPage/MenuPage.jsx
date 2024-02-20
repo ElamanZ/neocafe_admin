@@ -6,6 +6,7 @@ import { tableBodyDatas } from '../../assets/utils/data.js';
 import { categoryData } from '../../assets/utils/data.js';
 import plusIcon from '../../assets/images/table/mdi_plus.svg';
 import downIcon from '../../assets/images/table/downIcon.svg';
+import downIcon2 from '../../assets/images/table/dropDownVVerh.svg';
 import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 import editIcon from '../../assets/images/table/mdi_edit.svg';
 import deleteIcon from '../../assets/images/table/mdi_delete.svg';
@@ -39,10 +40,10 @@ function MenuPage() {
                 <tr>
                     <th className={styles.table__numSymbol}>№</th>
                     <th>Наименование</th>
-                    <th className={styles.categoryDropdown}>
+                    <th onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`${styles.categoryDropdown} ${isDropdownOpen ? styles.categoryDropdown_active : ""}`}>
                         Категории
                         <button className={styles.categoryDropdown__toggle} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                            <img src={downIcon} alt="downIcon" />
+                            <img src={isDropdownOpen ? downIcon2 : downIcon} alt="downIcon" />
                         </button>
                         {isDropdownOpen && (
                             <div className={styles.categoryDropdown__menu}>

@@ -94,6 +94,7 @@
 }
 .btn_login:disabled {
   background-color: #35536BBF;
+  cursor: no-drop;
 }
 .login__image {
   position: absolute;

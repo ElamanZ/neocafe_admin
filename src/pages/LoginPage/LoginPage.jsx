@@ -4,8 +4,9 @@ import styles from './loginPage.module.scss'
 import eyeIcon from "../../assets/images/login/Eye.svg";
 import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";
 import login_picture from "../../assets/images/login/LoginPicture.png"
+import {useNavigate} from "react-router";
 function LoginPage(props) {
-
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -28,7 +29,9 @@ function LoginPage(props) {
         password: passwordValue
     }
 
+
     const clickLogBtn = () => {
+        navigate('/main')
         return console.log(loginData)
     }
 
