@@ -1,0 +1,25 @@
+.newCategoryModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #ce2b2b;
+  border: none;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+}
+.newCategoryModal__btnsBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 48px;
+}
+.newCategoryModal__btnBlock {
+  width: 260px;
+  height: 56px;
+}
+.modalText {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 24px 0 12px;
+}

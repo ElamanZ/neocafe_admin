@@ -11,6 +11,7 @@ import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 import editIcon from '../../assets/images/table/mdi_edit.svg';
 import deleteIcon from '../../assets/images/table/mdi_delete.svg';
 import Button from "../../components/buttons/Button.jsx";
+import NewCategoryModal from "../../components/modals/NewCategoryModal.jsx";
 
 function MenuPage() {
 
@@ -18,6 +19,7 @@ function MenuPage() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isOptionOpen, setIsOptionOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
 
@@ -32,6 +34,10 @@ function MenuPage() {
     const handleOptionOpen = (id) => {
         setIsOptionOpen(!isOptionOpen)
         setSelectedItemId(id);
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true);
     };
 
     return (
@@ -54,7 +60,7 @@ function MenuPage() {
                                         <img className={styles.categoryDropdown__deleteIcon} src={trashIcon} alt="trashIcon" onClick={() => handleDelete(index)}/>
                                     </div>
                                 ))}
-                                <button className={styles.categoryDropdown__addCategoryButton}>
+                                <button className={styles.categoryDropdown__addCategoryButton} onClick={openModal}>
                                     Добавить
                                     <img src={plusIcon} alt="plusIcon"/>
                                 </button>
@@ -105,6 +111,8 @@ function MenuPage() {
                 <div className={styles.tableBlock__pagination}>table__pagination</div>
             </div>
             <div style={{width:'260px', height: '56px'}}></div>
+            <NewCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
         </div>
     );
 }

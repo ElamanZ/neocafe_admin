@@ -1,0 +1,14 @@
+.headerModal {
+  display: flex;
+  justify-content: space-between;
+}
+.btnClose {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  img {
+    width: 19px;
+    height: 19px;
+  }
+}
