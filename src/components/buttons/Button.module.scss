@@ -1,0 +1,26 @@
+.button {
+  width: 100%;
+  height: 70px;
+  background-color: #35536B;
+  color: #FEFEFE;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+
+}
+.button__modal {
+  border-radius: 10px;
+  height: 56px;
+}
+.button__login {
+  border-radius: 20px;
+}
+.button__login:disabled {
+  background-color: #35536BBF;
+  cursor: no-drop;
+}
+
+
+

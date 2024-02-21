@@ -10,6 +10,7 @@ import downIcon2 from '../../assets/images/table/dropDownVVerh.svg';
 import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 import editIcon from '../../assets/images/table/mdi_edit.svg';
 import deleteIcon from '../../assets/images/table/mdi_delete.svg';
+import Button from "../../components/buttons/Button.jsx";
 
 function MenuPage() {
 
@@ -103,6 +104,7 @@ function MenuPage() {
             <div className={styles.tableBlock__paginationBlock}>
                 <div className={styles.tableBlock__pagination}>table__pagination</div>
             </div>
+            <div style={{width:'260px', height: '56px'}}></div>
         </div>
     );
 }

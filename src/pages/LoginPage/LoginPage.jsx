@@ -5,6 +5,7 @@ import eyeIcon from "../../assets/images/login/Eye.svg";
 import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";
 import login_picture from "../../assets/images/login/LoginPicture.png"
 import {useNavigate} from "react-router";
+import Button from "../../components/buttons/Button.jsx";
 function LoginPage(props) {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
@@ -62,7 +63,7 @@ function LoginPage(props) {
                                         onClick={togglePasswordVisibility}
                                     />
                                 </div>
-                                <button onClick={clickLogBtn} disabled={adminValue==='' || passwordValue===''} className={styles.btn_login}>Войти</button>
+                                <Button onClick={clickLogBtn} disabled={adminValue === '' || passwordValue === ''} isModalButton={false}>Войти</Button>
                             </form>
                         </div>
                     </div>
