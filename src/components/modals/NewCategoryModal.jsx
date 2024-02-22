@@ -6,6 +6,9 @@ import styles from "./NewCategoryModal.module.scss";
 import styleInput from "../Input/Input.module.scss";
 import {useForm} from "react-hook-form";
 import HeaderModal from "./HeaderModal/HeaderModal.jsx";
+import { addCategory, } from '../../redux/slices/CategoryMenuSlice.js';
+import {useDispatch} from "react-redux";
+
 
 const style = {
     position: 'absolute',
@@ -21,9 +24,12 @@ const style = {
 };
 
 function NewCategoryModal({isOpen, onClose}) {
+    const dispatch = useDispatch();
+
     const text = "Новая категория"
     const { register, handleSubmit, formState: {errors}, reset } = useForm();
     const onSubmit = (data) => {
+        dispatch(addCategory(data.category));
         alert(`Новая категория: ${data.category}`);
         reset();
         onClose();

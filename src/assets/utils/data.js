@@ -76,9 +76,6 @@ export const tableBodyDatas = [
         branch: 'NeoCafe Central',
     },
 ];
-export const categoryData = ['Кофе', 'Десерты', 'Коктейли', 'Выпечка', 'Чай']
-
-
 
 
 // navBar for MainPage

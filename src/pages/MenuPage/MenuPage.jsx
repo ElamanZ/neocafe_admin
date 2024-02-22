@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import styles from '../MenuPage/menuPage.module.scss';
 import dots_icon from '../../assets/images/table/mdi_dots-vertical.svg';
-import { MenuHeadDatas } from '../../assets/utils/data.js';
 import { tableBodyDatas } from '../../assets/utils/data.js';
-import { categoryData } from '../../assets/utils/data.js';
 import plusIcon from '../../assets/images/table/mdi_plus.svg';
 import downIcon from '../../assets/images/table/downIcon.svg';
 import downIcon2 from '../../assets/images/table/dropDownVVerh.svg';
 import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 import editIcon from '../../assets/images/table/mdi_edit.svg';
 import deleteIcon from '../../assets/images/table/mdi_delete.svg';
-import Button from "../../components/buttons/Button.jsx";
-import NewCategoryModal from "../../components/modals/NewCategoryModal.jsx";
+import { deleteCategory } from '../../redux/slices/CategoryMenuSlice';
+import NewCategoryModal from "../../components/modals/NewCategoryModal";
+
 
 function MenuPage() {
+    const categories = useSelector(state => state.categoryData.category);
+    const dispatch = useDispatch();
 
-    const [categories, setCategories] = useState(categoryData);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isOptionOpen, setIsOptionOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
@@ -24,11 +25,8 @@ function MenuPage() {
 
 
     const handleDelete = (index) => {
-        const updatedCategories = [...categories];
-        updatedCategories.splice(index, 1);
-        setCategories(updatedCategories);
+        dispatch(deleteCategory(categories[index]));
     };
-
 
 
     const handleOptionOpen = (id) => {
@@ -39,6 +37,7 @@ function MenuPage() {
     const openModal = () => {
         setIsModalOpen(true);
     };
+
 
     return (
         <div className={styles.tableBlock}>
@@ -60,7 +59,7 @@ function MenuPage() {
                         {isDropdownOpen && (
                             <div className={styles.categoryDropdown__menu}>
                                 {categories.map((category, index) => (
-                                    <div className={styles.categoryDropdown__item} key={index} >
+                                    <div className={styles.categoryDropdown__item} key={index}>
                                         {category}
                                         <img
                                             className={styles.categoryDropdown__deleteIcon}
