@@ -1,12 +1,12 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from "../buttons/Button.jsx";
+import Button from "../../buttons/Button.jsx";
 import styles from "./NewCategoryModal.module.scss";
-import styleInput from "../Input/Input.module.scss";
+import styleInput from "../../Input/Input.module.scss";
 import {useForm} from "react-hook-form";
-import HeaderModal from "./HeaderModal/HeaderModal.jsx";
-import { addCategory, } from '../../redux/slices/CategoryMenuSlice.js';
+import HeaderModal from "../HeaderModal/HeaderModal.jsx";
+import { addCategory, } from '../../../redux/slices/CategoryMenuSlice.js';
 import {useDispatch} from "react-redux";
 
 

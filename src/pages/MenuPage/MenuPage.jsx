@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pagination } from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../MenuPage/menuPage.module.scss';
 import dots_icon from '../../assets/images/table/mdi_dots-vertical.svg';
 import { tableBodyDatas } from '../../assets/utils/data.js';
@@ -11,22 +11,14 @@ import trashIcon from '../../assets/images/table/mdi_delete-outline.svg';
 import editIcon from '../../assets/images/table/mdi_edit.svg';
 import deleteIcon from '../../assets/images/table/mdi_delete.svg';
 import { deleteCategory } from '../../redux/slices/CategoryMenuSlice';
-import NewCategoryModal from "../../components/modals/NewCategoryModal";
-
-
+import NewCategoryModal from "../../components/modals/NewCategoryModal/NewCategoryModal.jsx";
+import DeleteCategoryModal from "../../components/modals/DeleteCategoryModal/DeleteCategoryModal.jsx";
 
 const itemsPerPage = 6;
 
 function MenuPage() {
-
-    // Pagination Logic
     const [currentPage, setCurrentPage] = useState(1);
 
-
-
-
-
-    // Category Logic
     const categories = useSelector(state => state.categoryData.category);
     const dispatch = useDispatch();
 
@@ -34,13 +26,12 @@ function MenuPage() {
     const [isOptionOpen, setIsOptionOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const handleDelete = (index) => {
-        dispatch(deleteCategory(categories[index]));
+        setSelectedItemId(index);
+        setIsDeleteModalOpen(true);
     };
-
 
     const handleOptionOpen = (id) => {
         setIsOptionOpen(!isOptionOpen)
@@ -51,8 +42,6 @@ function MenuPage() {
         setIsModalOpen(true);
     };
 
-
-
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = tableBodyDatas.slice(indexOfFirstItem, indexOfLastItem);
@@ -60,6 +49,16 @@ function MenuPage() {
     const onPageChange = (page) => {
         setCurrentPage(page);
     };
+
+    const onDelete = () => {
+        dispatch(deleteCategory(categories[selectedItemId]));
+        setIsDeleteModalOpen(false);
+    };
+
+    const onCancel = () => {
+        setIsDeleteModalOpen(false);
+    };
+
     return (
         <div className={styles.tableBlock}>
             <table className={styles.table}>
@@ -67,9 +66,7 @@ function MenuPage() {
                 <tr className={styles.trBlock}>
                     <th className={styles.table__numSymbol}>№</th>
                     <th>Наименование</th>
-                    <th
-                        className={`${styles.categoryDropdown} ${isDropdownOpen ? styles.categoryDropdown_active : ""}`}
-                    >
+                    <th className={`${styles.categoryDropdown} ${isDropdownOpen ? styles.categoryDropdown_active : ""}`}>
                         <button
                             className={styles.categoryDropdown__toggle}
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -102,7 +99,6 @@ function MenuPage() {
                     <th>Филиал</th>
                     <th></th>
                 </tr>
-
                 </thead>
                 <tbody>
                 {currentItems.map((tableBodyData, index) => (
@@ -141,8 +137,15 @@ function MenuPage() {
                 <Pagination current={currentPage} onChange={onPageChange} total={tableBodyDatas.length} pageSize={itemsPerPage} />
             </div>
             <NewCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-        </div>
+            <DeleteCategoryModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onCancel={() => setIsDeleteModalOpen(false)}
+                onDelete={(selectedItemId) => {
+                    dispatch(deleteCategory(selectedItemId));
+                }}
+                selectedItemId={selectedItemId}
+            />        </div>
     );
 }
 
