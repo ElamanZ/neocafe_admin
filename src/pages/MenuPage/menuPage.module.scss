@@ -4,17 +4,6 @@
   background-color: #FFFFFF;
   box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.07);
   position: relative;
-  &__paginationBlock {
-    padding: 40px 0 24px;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__pagination {
-    width: 384px;
-    height: 60px;
-    border: #2A3440 2px solid;
-  }
 }
 .table {
   position: relative;
@@ -24,11 +13,11 @@
 
   th {
     text-align: start;
-    padding: 30px 18px 30px 18px;
+    padding: 30px 18px 30px 30px;
   }
   td {
     text-align: start;
-    padding: 30px 18px 30px 18px;
+    padding: 30px 18px 30px 30px;
   }
 
   th {
@@ -61,15 +50,6 @@
       height: 28px;
     }
   }
-}
-@media (max-height: 850px) {
-  .tableBlock__paginationBlock {
-    padding: 28px 0 17px;
-  }
-  .tableBlock__pagination {
-    height: 40px;
-  }
-
 }
 
 .trBlock {
@@ -111,7 +91,6 @@
   &__item {
     position: relative;
     margin-bottom: 10px;
-
   }
 
   &__item:hover {
@@ -179,3 +158,18 @@
     border: none;
   }
 }
+
+.tableBlock__paginationBlock {
+  padding: 40px 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tableBlock__pagination {
+  width: 384px;
+  height: 60px;
+}
+
+

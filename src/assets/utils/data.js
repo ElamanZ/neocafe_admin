@@ -75,6 +75,46 @@ export const tableBodyDatas = [
         price: 100,
         branch: 'NeoCafe Central',
     },
+    {
+        id: 7,
+        name: "КофеМол",
+        category: "Напитки",
+        ingredients: "Кофе (30мл), Молоко (100мл), Шоколад (10г)",
+        price: 220,
+        branch: "Neo Center"
+    },
+    {
+        id: 8,
+        name: "ФлэтУайт",
+        category: "Кофе",
+        ingredients: "Эспрессо (30мл), Молоко (100мл)",
+        price: 200,
+        branch: "Neo Center"
+    },
+    {
+        id: 9,
+        name: "КарамМак",
+        category: "Кофе",
+        ingredients: "Эспрессо (30мл), Молоко (50мл), Карамельный сироп (20мл)",
+        price: 180,
+        branch: "Neo Center"
+    },
+    {
+        id: 10,
+        name: "Мятный чай",
+        category: "Чай",
+        ingredients: "Чай (200мл), Мята (5г), Лимон (1 долька), Сахар (по вкусу)",
+        price: 130,
+        branch: "Neo Ololo"
+    },
+    {
+        id: 11,
+        name: "Смузи",
+        category: "Напитки",
+        ingredients: "Банан (1 шт), Ягоды (100г), Апельсиновый сок (150мл), Мед (по вкусу)",
+        price: 250,
+        branch: "Neo Alamedin"
+    }
 ];
 
 

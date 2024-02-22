@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Pagination } from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import styles from '../MenuPage/menuPage.module.scss';
 import dots_icon from '../../assets/images/table/mdi_dots-vertical.svg';
@@ -13,7 +14,19 @@ import { deleteCategory } from '../../redux/slices/CategoryMenuSlice';
 import NewCategoryModal from "../../components/modals/NewCategoryModal";
 
 
+
+const itemsPerPage = 6;
+
 function MenuPage() {
+
+    // Pagination Logic
+    const [currentPage, setCurrentPage] = useState(1);
+
+
+
+
+
+    // Category Logic
     const categories = useSelector(state => state.categoryData.category);
     const dispatch = useDispatch();
 
@@ -39,6 +52,14 @@ function MenuPage() {
     };
 
 
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = tableBodyDatas.slice(indexOfFirstItem, indexOfLastItem);
+
+    const onPageChange = (page) => {
+        setCurrentPage(page);
+    };
     return (
         <div className={styles.tableBlock}>
             <table className={styles.table}>
@@ -84,12 +105,12 @@ function MenuPage() {
 
                 </thead>
                 <tbody>
-                {tableBodyDatas.map((tableBodyData, index) => (
+                {currentItems.map((tableBodyData, index) => (
                     <tr key={tableBodyData.id}>
-                        <td className={styles.table__numSymbol}>№{index + 1}</td>
+                        <td className={styles.table__numSymbol}>№{indexOfFirstItem + index + 1}</td>
                         <td>{tableBodyData.name}</td>
                         <td>{tableBodyData.category}</td>
-                        <td style={{paddingLeft: "50px"}}>{tableBodyData.ingredients}</td>
+                        <td style={{ paddingLeft: "50px" }}>{tableBodyData.ingredients}</td>
                         <td>{tableBodyData.price}</td>
                         <td>{tableBodyData.branch}</td>
                         <td>
@@ -102,11 +123,11 @@ function MenuPage() {
                             {isOptionOpen && selectedItemId === tableBodyData.id && (
                                 <div className={styles.optionBlock}>
                                     <button className={styles.optionBlock__btnEdit}>
-                                        <img src={editIcon} alt="editIcon"/>
+                                        <img src={editIcon} alt="editIcon" />
                                         Редактировать
                                     </button>
                                     <button className={styles.optionBlock__btnDelete}>
-                                        <img src={deleteIcon} alt="deleteIcon"/>
+                                        <img src={deleteIcon} alt="deleteIcon" />
                                         Удалить
                                     </button>
                                 </div>
@@ -117,9 +138,8 @@ function MenuPage() {
                 </tbody>
             </table>
             <div className={styles.tableBlock__paginationBlock}>
-                <div className={styles.tableBlock__pagination}>table__pagination</div>
+                <Pagination current={currentPage} onChange={onPageChange} total={tableBodyDatas.length} pageSize={itemsPerPage} />
             </div>
-            <div style={{width:'260px', height: '56px'}}></div>
             <NewCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         </div>
