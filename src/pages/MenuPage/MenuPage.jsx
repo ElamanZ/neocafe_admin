@@ -44,12 +44,17 @@ function MenuPage() {
         <div className={styles.tableBlock}>
             <table className={styles.table}>
                 <thead>
-                <tr>
+                <tr className={styles.trBlock}>
                     <th className={styles.table__numSymbol}>№</th>
                     <th>Наименование</th>
-                    <th onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`${styles.categoryDropdown} ${isDropdownOpen ? styles.categoryDropdown_active : ""}`}>
-                        Категории
-                        <button className={styles.categoryDropdown__toggle} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                    <th
+                        className={`${styles.categoryDropdown} ${isDropdownOpen ? styles.categoryDropdown_active : ""}`}
+                    >
+                        <button
+                            className={styles.categoryDropdown__toggle}
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        >
+                            Категории
                             <img src={isDropdownOpen ? downIcon2 : downIcon} alt="downIcon" />
                         </button>
                         {isDropdownOpen && (
@@ -57,7 +62,12 @@ function MenuPage() {
                                 {categories.map((category, index) => (
                                     <div className={styles.categoryDropdown__item} key={index} >
                                         {category}
-                                        <img className={styles.categoryDropdown__deleteIcon} src={trashIcon} alt="trashIcon" onClick={() => handleDelete(index)}/>
+                                        <img
+                                            className={styles.categoryDropdown__deleteIcon}
+                                            src={trashIcon}
+                                            alt="trashIcon"
+                                            onClick={() => handleDelete(index)}
+                                        />
                                     </div>
                                 ))}
                                 <button className={styles.categoryDropdown__addCategoryButton} onClick={openModal}>
@@ -67,8 +77,8 @@ function MenuPage() {
                             </div>
                         )}
                     </th>
-                    <th>Наименование</th>
-                    <th>Состав блюда и граммовка</th>
+                    <th style={{paddingLeft: "50px"}}>Состав блюда и граммовка</th>
+                    <th>Стоимость</th>
                     <th>Филиал</th>
                     <th></th>
                 </tr>
@@ -80,7 +90,7 @@ function MenuPage() {
                         <td className={styles.table__numSymbol}>№{index + 1}</td>
                         <td>{tableBodyData.name}</td>
                         <td>{tableBodyData.category}</td>
-                        <td>{tableBodyData.ingredients}</td>
+                        <td style={{paddingLeft: "50px"}}>{tableBodyData.ingredients}</td>
                         <td>{tableBodyData.price}</td>
                         <td>{tableBodyData.branch}</td>
                         <td>
