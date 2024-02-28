@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import styles from "./loginPage.module.scss";
-
 import eyeIcon from "../../assets/images/login/Eye.svg";
 import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";
 import login_picture from "../../assets/images/login/LoginPicture.png";
 import { useNavigate } from "react-router";
 import Button from "../../components/buttons/Button.jsx";
 import { useDispatch } from "react-redux";
-// import { login } from "../../redux/slices/UserSlice.js";
 import { loginUser } from "../../api/authCookie.js";
 
 function LoginPage(props) {
