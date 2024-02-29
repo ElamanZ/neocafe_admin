@@ -1,7 +1,7 @@
 .tableBlock {
   width: 100%;
   border-radius: 20px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.07);
   position: relative;
 }
@@ -21,21 +21,24 @@
   }
 
   th {
-
     line-height: 32px;
   }
+
   td {
     font-weight: 500;
-    border-bottom: 1px #EBEFF2 solid;
+    border-bottom: 1px #ebeff2 solid;
   }
+
   tr {
     transition: all 0.3s;
   }
+
   tbody tr:hover {
     background-color: #f0f1f1;
   }
+
   &__numSymbol {
-    color: #5B7E9A;
+    color: #5b7e9a;
   }
   &__btn {
     background: none;
@@ -54,11 +57,11 @@
 
 .trBlock {
   position: relative;
-  border-bottom: 1px #35536B solid;
+  border-bottom: 1px #35536b solid;
 }
 .categoryDropdown_active {
   position: absolute;
-  background-color: #EBEFF2;
+  background-color: #ebeff2;
   border-radius: 10px;
 }
 .categoryDropdown {
@@ -71,7 +74,7 @@
   &__toggle {
     font-size: 16px;
     font-weight: 600;
-    color: #2A3440;
+    color: #2a3440;
     position: relative;
 
     img {
@@ -97,12 +100,11 @@
     cursor: context-menu;
     img {
       opacity: 1;
-
     }
-    color: #F45656;
+    color: #f45656;
   }
 
-  &__deleteIcon{
+  &__deleteIcon {
     position: absolute;
     top: 50%;
     right: 0;
@@ -110,12 +112,11 @@
     opacity: 0;
     transition: opacity 0.3s;
     cursor: pointer;
-
   }
   &__addCategoryButton {
     font-weight: 600;
     font-size: 16px;
-    color: #5B7E9A;
+    color: #5b7e9a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,10 +131,10 @@
   position: absolute;
   width: 200px;
   height: 88px;
-  border: 1px solid #5B7E9A;
+  border: 1px solid #5b7e9a;
   border-radius: 8px;
   right: 40px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -152,7 +153,7 @@
   }
   &__btnEdit {
     border: none;
-    border-bottom: solid 1px #5B7E9A;
+    border-bottom: solid 1px #5b7e9a;
   }
   &__btnDelete {
     border: none;
@@ -166,10 +167,7 @@
   align-items: center;
 }
 
-
 .tableBlock__pagination {
   width: 384px;
   height: 60px;
 }
-
-
