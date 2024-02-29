@@ -7,31 +7,37 @@ import { useNavigate } from "react-router";
 import Button from "../../components/buttons/Button.jsx";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../api/authCookie.js";
+import classNames from "classnames";
 
 function LoginPage(props) {
+  const [adminValue, setAdminValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isAdminError, setIsAdminError] = useState(false);
+  const [isPasswordError, setIsPasswordError] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const inputType = showPassword ? "text" : "password";
 
-  const [adminValue, setAdminValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-
   const handleChangeAdminValue = (e) => {
     setAdminValue(e.target.value);
+    setIsAdminError(false);
   };
 
   const handleChangePasswordValue = (e) => {
     setPasswordValue(e.target.value);
+    setIsPasswordError(false);
   };
 
-  const loginData = {
-    login: adminValue,
-    password: passwordValue,
-  };
+  // const loginData = {
+  //   login: adminValue,
+  //   password: passwordValue,
+  // };
 
   //   const clickLogBtn = () => {
   //     navigate("/main");
@@ -41,13 +47,24 @@ function LoginPage(props) {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (adminValue === "") {
+      setIsAdminError(true);
+      return;
+    }
+
+    if (passwordValue === "") {
+      setIsPasswordError(true);
+      return;
+    }
+
     let userCredentials = {
       email: adminValue,
       password: passwordValue,
     };
 
     try {
-      await dispatch(loginUser(userCredentials));
+      const resp = await dispatch(loginUser(userCredentials));
+      console.log(resp);
       navigate("/main");
     } catch (error) {
       console.log(error);
@@ -93,9 +110,15 @@ function LoginPage(props) {
                   placeholder="Логин"
                   value={adminValue}
                   onChange={handleChangeAdminValue}
-                  className={styles.input_login}
+                  className={classNames(styles.input_login, {
+                    [styles.input_error]: isAdminError,
+                  })}
                 />
-                <div className={styles.login_passwordInput}>
+                <div
+                  className={classNames(styles.login_passwordInput, {
+                    [styles.input_error]: isPasswordError,
+                  })}
+                >
                   <input
                     type={inputType}
                     placeholder="Пароль"
@@ -113,6 +136,7 @@ function LoginPage(props) {
                   //   onClick={clickLogBtn}
                   disabled={adminValue === "" || passwordValue === ""}
                   isModalButton={false}
+                  onClick={handleLogin}
                 >
                   Войти
                 </Button>

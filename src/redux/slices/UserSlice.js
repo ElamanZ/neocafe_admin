@@ -6,6 +6,18 @@ const initialState = {
   token: null,
 };
 
+export const loginUser = createAsyncThunk(
+  "user/loginUser",
+  async (userCredentials, { rejectWithValue }) => {
+    try {
+      const response = await login(userCredentials);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -18,6 +30,11 @@ const userSlice = createSlice({
       state.isAuthenticated = false;
       state.token = null;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
   },
 });
 

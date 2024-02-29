@@ -8,7 +8,6 @@
 }
 .login__content {
   width: 50%;
-
 }
 .login_form {
   max-width: 534px;
@@ -16,15 +15,15 @@
 }
 .content_title {
   font-size: 32px;
-  font-family: 'Yaro', sans-serif;
+  font-family: "Yaro", sans-serif;
   margin: 32px 0 -60px 32px;
 }
 .black {
-  color: #2A3440;
+  color: #2a3440;
 }
 
 .primary {
-  color: #F47356;
+  color: #f47356;
 }
 
 .login {
@@ -34,7 +33,7 @@
   justify-content: center;
   height: 100vh;
   margin: 16px;
-  h1{
+  h1 {
     font-size: 72px;
     margin-bottom: 38px;
   }
@@ -44,10 +43,10 @@
     width: 100%;
     border: none;
     outline: none;
-    background-color: #EBEFF2;
+    background-color: #ebeff2;
     height: 66px;
     border-radius: 20px;
-    color: #5F6366;
+    color: #5f6366;
     font-size: 18px;
     padding: 15px 20px;
     margin-bottom: 32px;
@@ -58,8 +57,8 @@
   align-items: center;
   justify-content: center;
   max-width: 534px;
-  width: 100%;;
-  background-color: #EBEFF2;
+  width: 100%;
+  background-color: #ebeff2;
   height: 66px;
   border-radius: 20px;
   padding: 15px 20px;
@@ -71,8 +70,8 @@
     width: 500px;
     font-size: 18px;
     margin-right: 10px;
-    background-color: #EBEFF2;
-    color: #5F6366;
+    background-color: #ebeff2;
+    color: #5f6366;
   }
   img {
     width: 24px;
@@ -95,3 +94,6 @@
   }
 }
 
+.input_error {
+  border: 1px solid red;
+}
