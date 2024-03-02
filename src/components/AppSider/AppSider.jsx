@@ -9,7 +9,7 @@ import styles from "../AppSider/AppSider.module.scss";
 import { menuItems } from "../../assets/utils/data.js";
 import { logoutSuccess } from "../../redux/slices/UserSlice.js";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const siderStyle = {
   color: "#fff",
@@ -41,11 +41,13 @@ function AppSider(props) {
         <div>
           <ul className={styles.menuList}>
             {menuItems.map((item) => (
-              <li
+              <NavLink
                 key={item.id}
-                className={`${styles.menuItem} ${
-                  activeItem === item.id ? styles.menuItem__active : ""
-                }`}
+                // className={`${styles.menuItem} ${
+                //   activeItem === item.id ? styles.menuItem__active : ""
+                // }`}
+                className={styles.menuItem}
+                activeClassName={styles.menuItem__active}
                 onClick={() => handleClick(item.id)}
               >
                 <img
@@ -54,7 +56,7 @@ function AppSider(props) {
                   className={styles.menuItem__icon}
                 />
                 {item.label}
-              </li>
+              </NavLink>
             ))}
           </ul>
         </div>

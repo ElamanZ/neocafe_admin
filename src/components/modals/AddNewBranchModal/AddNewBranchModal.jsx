@@ -3,14 +3,18 @@ import styles from "./AddNewBranchModal.module.scss";
 import { Modal, Form, Input, TimePicker, Button, Checkbox, Upload } from "antd";
 import cloudUpload from "../../../assets/images/modals/cloudUpload.svg";
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+import { hideModal } from "../../../redux/slices/modalSlice";
+import mdi_closeBlack from "../../../assets/images/appHeader/mdi_closeBlack.svg";
 
 const { RangePicker } = TimePicker;
 const { Dragger } = Upload;
 
 const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
   const [form] = Form.useForm();
-
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const dispatch = useDispatch();
 
   const handleUpload = (info) => {
     if (info.file.status === "done") {
@@ -21,7 +25,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
     }
   };
 
-  const onFinish = (values) => {
+  const onSubmit = (values) => {
     // Handle form submission
     console.log("Received values:", values);
   };
@@ -29,6 +33,19 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
   const handleTimeChange = (time, day) => {
     console.log(`Selected time for ${day}:`, time);
   };
+
+  const handleModalClose = () => {
+    dispatch(hideModal());
+  };
+
+  const closeIcon = (
+    <img
+      src={mdi_closeBlack}
+      alt="Close"
+      className={styles.modalClose_btn}
+      onClick={handleModalClose}
+    />
+  );
 
   return (
     <Modal
@@ -38,9 +55,10 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
       onCancel={onCancel}
       footer={null}
       className={styles.modal}
+      closeIcon={closeIcon}
     >
       <div className={styles.modalContainer}>
-        <Form form={form} onFinish={onFinish} layout="vertical">
+        <Form form={form} onFinish={onSubmit} layout="vertical">
           <Form.Item
             name="branchImg"
             label={
@@ -133,7 +151,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
           <h3>График работы</h3>
 
           <div className={styles.schedule}>
-            <div className={classNames(styles.row, styles.header)}>
+            {/* <div className={classNames(styles.row, styles.header)}>
               <div className={styles.cell}>День недели</div>
               <div className={styles.cell}>Время работы</div>
             </div>
@@ -240,7 +258,10 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
               </div>
             </div>
             <div className={styles.row}>
-              <div className={styles.cell}>Воскресенье </div>
+              <div className={styles.cell}>
+                <p>Воскресенье</p>
+                <Checkbox />
+              </div>
 
               <div className="cell">
                 <TimePicker
@@ -253,14 +274,14 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
                   onChange={(time) => handleTimeChange(time, "Воскресенье")}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <Form.Item>
             <div className={styles.modal__btnWrapper}>
               <Button
                 className={classNames(styles.modal__btn, styles.cancel__btn)}
-                onClick={onCancel}
+                onClick={handleModalClose}
               >
                 Отмена
               </Button>
