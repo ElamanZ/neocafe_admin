@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { showModal, hideModal } from "../../redux/slices/modalSlice";
 import { branchData } from "../../assets/utils/data";
 import { Pagination } from "antd";
 import dots_icon from "../../assets/images/table/mdi_dots-vertical.svg";
@@ -25,6 +27,16 @@ const BranchesPage = () => {
     setIsOptionOpen(!isOptionOpen);
     setSelectedItemId(id);
   };
+
+  // const onCreateBtnClick = () => {
+  //   console.log("hi");
+  // };
+
+  // const dispatch = useDispatch();
+  // const handleCreateBtnClick = () => {
+  //   dispatch(showModal("addNewBranch"));
+  //   console.log(showModal);
+  // };
 
   return (
     <div className={styles.tableBlock}>
@@ -56,7 +68,10 @@ const BranchesPage = () => {
                 </button>
                 {isOptionOpen && selectedItemId === branchData.id && (
                   <div className={styles.optionBlock}>
-                    <button className={styles.optionBlock__btnEdit}>
+                    <button
+                      className={styles.optionBlock__btnEdit}
+                      // onClick={handleCreateBtnClick}
+                    >
                       <img
                         src={editIcon}
                         alt="editIcon"

@@ -1,0 +1,118 @@
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal {
+  width: 551px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 50px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  &__input {
+    width: 487px;
+    height: 64px;
+    background-color: #ebeff2;
+  }
+
+  &__input::placeholder {
+    color: #5f6366;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  &__label {
+    font-weight: 400;
+    font-size: 16px;
+    color: #5b7e9a;
+  }
+
+  &__btnWrapper {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__btn {
+    width: 236px;
+    height: 56px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+.cancel__btn {
+  color: #35536b;
+  border: 1px solid #35536b;
+}
+
+.cancel__btn:hover,
+.submit__btn:hover {
+  //   background-color: #35536b;
+  background: transparent;
+}
+
+.submit__btn {
+  color: #ffffff;
+  background-color: #35536b;
+}
+
+.schedule_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+}
+
+.schedule {
+  margin-bottom: 48px;
+}
+
+.daysWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daysCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 45px;
+}
+
+.imgUploadTitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.dragger_container {
+  border: 16px solid #ebeff2;
+  border-radius: 12px;
+}
+
+.draggerInline_container {
+  //   border: 1px dashed #5b7e9a;
+}
