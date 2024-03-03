@@ -104,7 +104,9 @@ function MenuPage() {
                 </div>
               )}
             </th>
-            <th style={{ paddingLeft: "50px" }}>Состав блюда и граммовка</th>
+            <th></th>
+            <th></th>
+            <th>Состав блюда и граммовка</th>
             <th>Стоимость</th>
             {/* <th>Филиал</th> */}
             <th></th>
@@ -118,7 +120,9 @@ function MenuPage() {
               </td>
               <td>{tableBodyData.name}</td>
               <td>{tableBodyData.category}</td>
-              <td style={{ paddingLeft: "50px" }}>
+              <td></td>
+              <td></td>
+              <td>
                 {tableBodyData.ingredients}
               </td>
               <td>{tableBodyData.price}</td>
