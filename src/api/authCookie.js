@@ -5,11 +5,12 @@ import { login } from "./index";
 export const loginUser = (credentials) => async (dispatch) => {
   try {
     const data = await login(credentials);
-    const token = data;
+    const token = data.token;
 
     Cookies.set("token", token, { expires: 10 });
     dispatch(loginSuccess({ token }));
   } catch (error) {
     console.log("Login failed", error);
+    throw error;
   }
 };

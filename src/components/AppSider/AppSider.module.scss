@@ -10,9 +10,10 @@
   justify-content: space-between;
   height: 100vh;
 }
+
 .sider__title {
   font-size: 32px;
-  font-family: 'Yaro', sans-serif;
+  font-family: "Yaro", sans-serif;
   padding: 32px 42px 56px;
   text-align: center;
 
@@ -24,11 +25,11 @@
   }
 }
 .white {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .primary {
-  color: #F47356;
+  color: #f47356;
 }
 
 .menuList {
@@ -48,10 +49,16 @@
   border-radius: 12px;
   font-size: 18px;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+  text-decoration: none;
+
+  .menuItem:hover {
+    color: #ffffff !important;
+    text-decoration: none;
+  }
 
   @media screen and (max-width: 1220px) {
     font-size: 16px;
@@ -61,7 +68,8 @@
   margin-right: 10px;
 }
 .menuItem__active {
-  background-color: #F47356;
+  background-color: #f47356;
+  color: #ffffff;
 }
 
 .sider__buttonExit {
@@ -78,7 +86,7 @@
     border: none;
     outline: none;
     background: none;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 10px;
     cursor: pointer;
     height: 48px;
@@ -95,4 +103,10 @@
   button:active {
     transform: translateY(1px);
   }
+}
+
+//
+.item_title {
+  font-weight: 500;
+  font-size: 18px;
 }

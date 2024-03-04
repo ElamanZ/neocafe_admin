@@ -1,3 +1,4 @@
+import { inputClasses } from "@mui/material";
 import axios from "axios";
 
 const instanse = axios.create({
@@ -16,5 +17,15 @@ export const login = async (data) => {
   } catch (error) {
     console.log("Login failed");
     throw error;
+  }
+};
+
+export const newBranch = async (branchData) => {
+  try {
+    const response = await instanse.post("/api/branch/newBranch");
+
+    return response;
+  } catch (error) {
+    console.log("Branch adding failed", error);
   }
 };

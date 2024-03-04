@@ -30,6 +30,13 @@ function AppSider(props) {
     navigate("/login");
   };
 
+  // export const menuItems = [
+  //   { id: "menu", label: "Меню", img: menuIcon },
+  //   { id: "warehouse", label: "Склад", img: warehouseIcon },
+  //   { id: "branches", label: "Филиалы", img: branchesIcon },
+  //   { id: "employees", label: "Сотрудники", img: employeesIcon },
+  // ];
+
   return (
     <Layout.Sider width="14%" style={siderStyle}>
       <div className={styles.sider__title}>
@@ -37,17 +44,15 @@ function AppSider(props) {
         <span className={styles.primary}>cafe</span>
       </div>
       <div className={styles.menuBlock}>
-        {/*переделать на NAV*/}
         <div>
           <ul className={styles.menuList}>
             {menuItems.map((item) => (
               <NavLink
+                to={`/${item.id}`}
                 key={item.id}
-                // className={`${styles.menuItem} ${
-                //   activeItem === item.id ? styles.menuItem__active : ""
-                // }`}
-                className={styles.menuItem}
-                activeClassName={styles.menuItem__active}
+                className={`${styles.menuItem} ${
+                  activeItem === item.id ? styles.menuItem__active : ""
+                }`}
                 onClick={() => handleClick(item.id)}
               >
                 <img

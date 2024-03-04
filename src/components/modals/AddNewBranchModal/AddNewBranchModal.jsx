@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./AddNewBranchModal.module.scss";
+import { newBranch } from "../../../api";
 import {
   Modal,
   Form,
@@ -17,6 +17,7 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal } from "../../../redux/slices/modalSlice";
 import mdi_closeBlack from "../../../assets/images/appHeader/mdi_closeBlack.svg";
+import styles from "./AddNewBranchModal.module.scss";
 
 const { RangePicker } = TimePicker;
 // const { Dragger } = Upload;
@@ -69,9 +70,14 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
     });
   };
 
-  const onSubmit = (values) => {
-    // Handle form submission
+  const onSubmit = async (values) => {
     console.log("Received values:", values);
+    try {
+      const response = await newBranch(values);
+      console.log("New branch added:", response.data);
+    } catch (error) {
+      console.log("Error adding new branch", error);
+    }
   };
 
   const closeIcon = (
