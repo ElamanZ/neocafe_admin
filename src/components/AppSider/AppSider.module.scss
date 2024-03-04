@@ -55,11 +55,6 @@
   margin-bottom: 12px;
   text-decoration: none;
 
-  .menuItem:hover {
-    color: #ffffff !important;
-    text-decoration: none;
-  }
-
   @media screen and (max-width: 1220px) {
     font-size: 16px;
   }
@@ -67,6 +62,7 @@
 .menuItem__icon {
   margin-right: 10px;
 }
+
 .menuItem__active {
   background-color: #f47356;
   color: #ffffff;

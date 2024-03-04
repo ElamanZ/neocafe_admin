@@ -21,6 +21,10 @@ export const login = async (data) => {
 };
 
 export const newBranch = async (branchData) => {
+  // headers:{
+  //   "Content-Type":'multipart/form-data',
+  // },
+
   try {
     const response = await instanse.post("/api/branch/newBranch");
 

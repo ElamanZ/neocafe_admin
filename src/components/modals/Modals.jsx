@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddNewBranchModal from "./AddNewBranchModal/AddNewBranchModal";
+import CreateNewProductModal from "./CreateNewProductModal/CreateNewProductModal";
 // import { selectModal } from "../../redux/slices/modalSlice";
 
 // const Modals = () => {
@@ -47,6 +48,7 @@ const Modals = () => {
 
   const ModalsMap = {
     addNewBranch: AddNewBranchModal,
+    createNewProductModal: CreateNewProductModal,
   };
 
   const ModalComponent = currentModal ? ModalsMap[currentModal] : null;

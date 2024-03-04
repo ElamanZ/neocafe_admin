@@ -32,11 +32,14 @@ const BranchesPage = () => {
   //   console.log("hi");
   // };
 
-  // const dispatch = useDispatch();
-  // const handleCreateBtnClick = () => {
-  //   dispatch(showModal("addNewBranch"));
-  //   console.log(showModal);
-  // };
+  const dispatch = useDispatch();
+  const handleCreateBtnClick = () => {
+    dispatch(showModal({ modalType: "addNewBranch" })); //TODO: there should be modal for edit
+  };
+
+  const showAddNewProductModal = () => {
+    dispatch(showModal({ modalType: "createNewProductModal" })); //test, should be on warehousepage
+  };
 
   return (
     <div className={styles.tableBlock}>
@@ -70,7 +73,7 @@ const BranchesPage = () => {
                   <div className={styles.optionBlock}>
                     <button
                       className={styles.optionBlock__btnEdit}
-                      // onClick={handleCreateBtnClick}
+                      onClick={handleCreateBtnClick}
                     >
                       <img
                         src={editIcon}
@@ -79,7 +82,10 @@ const BranchesPage = () => {
                       />
                       Редактировать
                     </button>
-                    <button className={styles.optionBlock__btnDelete}>
+                    <button
+                      className={styles.optionBlock__btnDelete}
+                      onClick={showAddNewProductModal}
+                    >
                       <img src={deleteIcon} alt="deleteIcon" />
                       Удалить
                     </button>

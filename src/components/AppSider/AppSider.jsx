@@ -50,9 +50,16 @@ function AppSider(props) {
               <NavLink
                 to={`/${item.id}`}
                 key={item.id}
-                className={`${styles.menuItem} ${
-                  activeItem === item.id ? styles.menuItem__active : ""
-                }`}
+                // className={`${styles.menuItem} ${
+                //   activeItem === item.id ? styles.menuItem__active : ""
+                // }`}
+
+                className={({ isActive }) =>
+                  [
+                    styles.menuItem,
+                    isActive ? styles.menuItem__active : styles.menuItem,
+                  ].join(" ")
+                }
                 onClick={() => handleClick(item.id)}
               >
                 <img
