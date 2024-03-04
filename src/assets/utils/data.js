@@ -183,7 +183,7 @@ export const branchData = [
 
 // navBar for MainPage
 export const menuItems = [
-  { id: "menu", label: "Меню", img: menuIcon },
+  { id: "main", label: "Меню", img: menuIcon },
   { id: "warehouse", label: "Склад", img: warehouseIcon },
   { id: "branches", label: "Филиалы", img: branchesIcon },
   { id: "employees", label: "Сотрудники", img: employeesIcon },

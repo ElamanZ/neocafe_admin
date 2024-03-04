@@ -5,6 +5,8 @@ import MenuPage from "../pages/MenuPage/MenuPage.jsx";
 import LoginPage from "../pages/LoginPage/LoginPage.jsx";
 import MainPage from "../pages/MainPage/MainPage.jsx";
 import BranchesPageContainer from "../pages/BranchesPage/BranchesPageContainer.jsx";
+import StaffPage from "../pages/StaffPage/StaffPage.jsx";
+import StockPage from "../pages/StockPage/StockPage.jsx";
 
 function AppRoutes({ isAuthenticated }) {
   return (
@@ -17,6 +19,8 @@ function AppRoutes({ isAuthenticated }) {
           <Route path="/" element={<LoginPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/branches" element={<BranchesPageContainer />} />
+          <Route path="/warehouse" element={<StockPage />} />
+          <Route path="/employees" element={<StaffPage />} />
         </Routes>
       </Layout>
     </Router>
