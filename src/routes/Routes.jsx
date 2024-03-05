@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage/LoginPage.jsx";
 import MainPage from "../pages/MainPage/MainPage.jsx";
 import BranchesPageContainer from "../pages/BranchesPage/BranchesPageContainer.jsx";
 import StaffPage from "../pages/StaffPage/StaffPage.jsx";
-import StockPage from "../pages/StockPage/StockPage.jsx";
+// import WarehousePage from "../pages/WarehousePage/WarehousePage.jsx";
 
 function AppRoutes({ isAuthenticated }) {
   return (
@@ -19,7 +19,7 @@ function AppRoutes({ isAuthenticated }) {
           <Route path="/" element={<LoginPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/branches" element={<BranchesPageContainer />} />
-          <Route path="/warehouse" element={<StockPage />} />
+          {/* <Route path="/warehouse" element={<WarehousePage />} /> */}
           <Route path="/employees" element={<StaffPage />} />
         </Routes>
       </Layout>

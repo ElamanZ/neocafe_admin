@@ -10,6 +10,7 @@ import { menuItems } from "../../assets/utils/data.js";
 import { logoutSuccess } from "../../redux/slices/UserSlice.js";
 import { useDispatch } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
+import { showModal } from "../../redux/slices/modalSlice.js";
 
 const siderStyle = {
   color: "#fff",
@@ -23,6 +24,10 @@ function AppSider(props) {
 
   const handleClick = (itemId) => {
     setActiveItem(itemId);
+  };
+
+  const handleLogoutModal = () => {
+    dispatch(showModal({ modalType: "deleteBranchModal" }));
   };
 
   const handleLogout = () => {
@@ -73,7 +78,7 @@ function AppSider(props) {
           </ul>
         </div>
         <div className={styles.sider__buttonExit}>
-          <button onClick={handleLogout}>
+          <button onClick={handleLogoutModal}>
             <img src={exitIcon} alt="exitIcon" />
             Выйти
           </button>
