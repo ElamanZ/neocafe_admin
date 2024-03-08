@@ -21,15 +21,26 @@ export const login = async (data) => {
 };
 
 export const newBranch = async (branchData) => {
-  // headers:{
-  //   "Content-Type":'multipart/form-data',
-  // },
-
   try {
-    const response = await instanse.post("/api/branch/newBranch");
+    const response = await instanse.post("/api/branch/newBranch", branchData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getBranch = async (id) => {
+  try {
+    const response = await instanse.get("/api/branch/{id}", id);
 
     return response;
   } catch (error) {
-    console.log("Branch adding failed", error);
+    console.log("Could not get branches", error);
+    throw error;
   }
 };
