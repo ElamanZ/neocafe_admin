@@ -8,7 +8,7 @@ import editIcon from "../../assets/images/table/mdi_edit.svg";
 import deleteIcon from "../../assets/images/table/mdi_delete.svg";
 import styles from "./BranchesPage.module.scss";
 
-const itemsPerPage = 6;
+const itemsPerPage = 10;
 
 const BranchesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
