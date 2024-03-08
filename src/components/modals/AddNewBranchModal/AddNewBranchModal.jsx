@@ -16,6 +16,7 @@ import cloudUpload from "../../../assets/images/modals/cloudUpload.svg";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal } from "../../../redux/slices/modalSlice";
+import { addBranch } from "../../../redux/slices/branchSlice";
 import mdi_closeBlack from "../../../assets/images/appHeader/mdi_closeBlack.svg";
 import styles from "./AddNewBranchModal.module.scss";
 
@@ -70,14 +71,17 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
     });
   };
 
-  const onSubmit = async (values) => {
+  const onFinish = async (values) => {
     console.log("Received values:", values);
-    try {
-      const response = await newBranch(values);
-      console.log("New branch added:", response.data);
-    } catch (error) {
-      console.log("Error adding new branch", error);
-    }
+    // try {
+    //   const response = await newBranch(values);
+    //   console.log("New branch added:", response.data);
+    // } catch (error) {
+    //   console.log("Error adding new branch", error);
+    // }
+
+    dispatch(addBranch(values));
+    handleModalClose();
   };
 
   const closeIcon = (
@@ -100,7 +104,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
       closeIcon={closeIcon}
     >
       <div className={styles.modalContainer}>
-        <Form form={form} onFinish={onSubmit} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <Form.Item
             name="branchImg"
             label={

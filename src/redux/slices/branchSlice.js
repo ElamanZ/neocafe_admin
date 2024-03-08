@@ -15,7 +15,10 @@ const branchSlice = createSlice({
       );
     },
   },
+  addBranch(state, action) {
+    state.branches.push(action.payload);
+  },
 });
 
-export const { deleteBranch } = branchSlice.actions;
+export const { deleteBranch, addBranch } = branchSlice.actions;
 export default branchSlice.reducer;
