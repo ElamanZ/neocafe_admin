@@ -1,18 +1,40 @@
 import React, { useState } from "react";
-import styles from "./AddNewBranchModal.module.scss";
-import { Modal, Form, Input, TimePicker, Button, Checkbox, Upload } from "antd";
+import { newBranch } from "../../../api";
+import {
+  Modal,
+  Form,
+  Input,
+  TimePicker,
+  Button,
+  Checkbox,
+  Upload,
+  message,
+} from "antd";
+import ruRu from "antd/es/locale/ru_RU";
+// import { Formik, Form, Field } from "formik";
 import cloudUpload from "../../../assets/images/modals/cloudUpload.svg";
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { hideModal } from "../../../redux/slices/modalSlice";
+import { addBranch } from "../../../redux/slices/branchSlice";
 import mdi_closeBlack from "../../../assets/images/appHeader/mdi_closeBlack.svg";
+import styles from "./AddNewBranchModal.module.scss";
 
 const { RangePicker } = TimePicker;
-const { Dragger } = Upload;
+// const { Dragger } = Upload;
 
 const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
   const [form] = Form.useForm();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [schedule, setSchedule] = useState({
+    Понедельник: { checked: false, startTime: null, endTime: null },
+    Вторник: { checked: false, startTime: null, endTime: null },
+    Среда: { checked: false, startTime: null, endTime: null },
+    Четверг: { checked: false, startTime: null, endTime: null },
+    Пятница: { checked: false, startTime: null, endTime: null },
+    Суббота: { checked: false, startTime: null, endTime: null },
+    Воскресенье: { checked: false, startTime: null, endTime: null },
+  });
 
   const dispatch = useDispatch();
 
@@ -25,17 +47,41 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
     }
   };
 
-  const onSubmit = (values) => {
-    // Handle form submission
-    console.log("Received values:", values);
-  };
-
-  const handleTimeChange = (time, day) => {
-    console.log(`Selected time for ${day}:`, time);
-  };
-
   const handleModalClose = () => {
     dispatch(hideModal());
+  };
+
+  const handleTimeChange = (time, day, type) => {
+    setSchedule({
+      ...schedule,
+      [day]: {
+        ...schedule[day],
+        [type]: time,
+      },
+    });
+  };
+
+  const handleCheckboxChange = (e, day) => {
+    setSchedule({
+      ...schedule,
+      [day]: {
+        ...schedule[day],
+        checked: e.target.checked,
+      },
+    });
+  };
+
+  const onFinish = async (values) => {
+    console.log("Received values:", values);
+    // try {
+    //   const response = await newBranch(values);
+    //   console.log("New branch added:", response.data);
+    // } catch (error) {
+    //   console.log("Error adding new branch", error);
+    // }
+
+    dispatch(addBranch(values));
+    handleModalClose();
   };
 
   const closeIcon = (
@@ -58,7 +104,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
       closeIcon={closeIcon}
     >
       <div className={styles.modalContainer}>
-        <Form form={form} onFinish={onSubmit} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <Form.Item
             name="branchImg"
             label={
@@ -68,11 +114,13 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
             }
           >
             <div className={styles.dragger_container}>
-              <Dragger
+              <Upload.Dragger
                 name="file"
-                multiple={false}
-                showUploadList={false}
+                // multiple={false}
+                listType="picture"
+                // showUploadList={false}
                 beforeUpload={() => false}
+                showUploadList={{ showRemoveIcon: false }}
                 onChange={handleUpload}
                 className={styles.draggerInline_container}
               >
@@ -87,13 +135,13 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
                     <>
                       <img src={cloudUpload} />
                       <p className={styles.upload_text}>
-                        Перетащите изображение для изменения или{" "}
-                        <span>обзор</span>
+                        Перетащите изображение для <br /> изменения или{" "}
+                        <span className={styles.upload_link}>обзор</span>
                       </p>
                     </>
                   )}
                 </div>
-              </Dragger>
+              </Upload.Dragger>
             </div>
           </Form.Item>
           <h3 className={styles.modal__subtitle}>Название и адрес</h3>
@@ -148,134 +196,55 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
             />
           </Form.Item>
 
-          <h3>График работы</h3>
+          <h3 className={styles.schedule_title}>График работы</h3>
 
-          <div className={styles.schedule}>
-            {/* <div className={classNames(styles.row, styles.header)}>
-              <div className={styles.cell}>День недели</div>
-              <div className={styles.cell}>Время работы</div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>Понедельник</div>
-              <div>
-                <Checkbox />
-              </div>
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Понедельник")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Понедельник")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>Вторник</div>
-              <div>
-                <Checkbox />
-              </div>
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Вторник")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Вторник")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>Среда</div>
-              <div>
-                <Checkbox />
-              </div>
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Среда")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Среда")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>Четверг</div>
-              <div>
-                <Checkbox />
-              </div>
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Четверг")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Четверг")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>Пятница</div>
-              <div>
-                <Checkbox />
-              </div>
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Пятница")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Пятница")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>
-                Суббота <Checkbox />
-              </div>
-
-              <div className={styles.cell}>
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Суббота")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Суббота")}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.cell}>
-                <p>Воскресенье</p>
-                <Checkbox />
-              </div>
-
-              <div className="cell">
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Воскресенье")}
-                />
-                {" - "}
-                <TimePicker
-                  format="HH:mm"
-                  onChange={(time) => handleTimeChange(time, "Воскресенье")}
-                />
-              </div>
-            </div> */}
+          <div className={styles.schedule_type}>
+            <h4>День недели</h4>
+            <h4>Время работы</h4>
           </div>
+          <div className={styles.schedule_line}></div>
+
+          {Object.entries(schedule).map(([day, details]) => (
+            <div key={day} className={styles.schedule}>
+              <div className={styles.dayAndCheckbox}>
+                <div className={styles.day}>{day}</div>
+                <input
+                  type="checkbox"
+                  checked={details.checked}
+                  onChange={(e) => handleCheckboxChange(e, day)}
+                  className={styles.checkbox}
+                />
+              </div>
+              <div className={styles.timePicker_wrapper}>
+                {details && (
+                  <TimePicker
+                    locale={ruRu}
+                    format="HH:mm"
+                    placeholder="11:00"
+                    onChange={(time) =>
+                      handleTimeChange(time, day, "startTime")
+                    }
+                    className={styles.timePicker}
+                  />
+                )}
+                <span className={styles.timePicker_line}> - </span>
+                {details && (
+                  <TimePicker
+                    locale={ruRu}
+                    format="HH:mm"
+                    placeholder="22:00"
+                    onChange={(time) => handleTimeChange(time, day, "endTime")}
+                    className={styles.timePicker}
+                    inputStyle={{
+                      fontWeight: "400",
+                      fontSize: "20px",
+                      color: "#2a3440",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+          ))}
 
           <Form.Item>
             <div className={styles.modal__btnWrapper}>
@@ -301,3 +270,62 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
 };
 
 export default AddNewBranchModal;
+
+// const AddNewBranchModal = ({}) => {
+//   const [selectedImage, setSelectedImage] = useState(null);
+//   const { isModalOpen } = useSelector((state) => state.modal);
+//   const dispatch = useDispatch();
+
+//   const handleUpload = (info) => {
+//     if (info.file.status === "done") {
+//       setSelectedImage(info.file.originFileObj);
+//       message.success(`${info.file.name} file uploaded successfully`);
+//     } else if (info.file.status === "error") {
+//       message.error(`${info.file.name} file upload failed.`);
+//     }
+//   };
+
+//   const onSubmit = (values) => {
+//     // Handle form submission
+//     console.log("Received values:", values);
+//   };
+
+//   const handleModalClose = () => {
+//     dispatch(hideModal());
+//   };
+//   return;
+//   <Modal
+//     title={<h3 className="modal__title">Новый филиал</h3>}
+//     visible={isModalOpen}
+//     onCancel={handleModalClose}
+//     footer={null}
+//     className="add-branch-modal"
+//   >
+//     <Formik
+//       initialValues={{
+//         image: "",
+//         name: "",
+//         address: "",
+//         phoneNumber: "",
+//         gisLink: "",
+//         tableCount: 0,
+//       }}
+//       onSubmit={onSubmit}
+//     >
+//       {({ values, setFieldValue }) => (
+//         <Form>
+//           <Field name="image">
+//             {({ field }) => (
+//               <div className={styles.imageuploadcontainer}>
+//                 {/* Your image upload component */}
+//                 hi
+//               </div>
+//             )}
+//           </Field>
+//         </Form>
+//       )}
+//     </Formik>
+//   </Modal>;
+// };
+
+// export default AddNewBranchModal;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showModal, hideModal } from "../../redux/slices/modalSlice";
 import { branchData } from "../../assets/utils/data";
 import { Pagination } from "antd";
+import { deleteBranch } from "../../redux/slices/branchSlice";
 import dots_icon from "../../assets/images/table/mdi_dots-vertical.svg";
 import editIcon from "../../assets/images/table/mdi_edit.svg";
 import deleteIcon from "../../assets/images/table/mdi_delete.svg";
@@ -14,6 +15,8 @@ const BranchesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isOptionOpen, setIsOptionOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+
+  const branchData = useSelector((state) => state.branch.branches);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -32,11 +35,20 @@ const BranchesPage = () => {
   //   console.log("hi");
   // };
 
-  // const dispatch = useDispatch();
-  // const handleCreateBtnClick = () => {
-  //   dispatch(showModal("addNewBranch"));
-  //   console.log(showModal);
+  const dispatch = useDispatch();
+  const handleCreateBtnClick = () => {
+    dispatch(showModal({ modalType: "addNewBranch" })); //TODO: there should be modal for edit
+  };
+
+  // const showAddNewProductModal = () => {
+  //   dispatch(showModal({ modalType: "createNewProductModal" })); //test, should be on warehousepage
   // };
+
+  const handleBranchDelete = (id) => {
+    console.log("Deleting branch with id:", id);
+    dispatch(deleteBranch(id));
+    setSelectedItemId(null);
+  };
 
   return (
     <div className={styles.tableBlock}>
@@ -70,7 +82,7 @@ const BranchesPage = () => {
                   <div className={styles.optionBlock}>
                     <button
                       className={styles.optionBlock__btnEdit}
-                      // onClick={handleCreateBtnClick}
+                      onClick={handleCreateBtnClick}
                     >
                       <img
                         src={editIcon}
@@ -79,7 +91,10 @@ const BranchesPage = () => {
                       />
                       Редактировать
                     </button>
-                    <button className={styles.optionBlock__btnDelete}>
+                    <button
+                      className={styles.optionBlock__btnDelete}
+                      onClick={() => handleBranchDelete(branchData.id)}
+                    >
                       <img src={deleteIcon} alt="deleteIcon" />
                       Удалить
                     </button>

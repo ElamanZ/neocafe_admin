@@ -10,6 +10,7 @@ import { menuItems } from "../../assets/utils/data.js";
 import { logoutSuccess } from "../../redux/slices/UserSlice.js";
 import { useDispatch } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
+import { showModal } from "../../redux/slices/modalSlice.js";
 
 const siderStyle = {
   color: "#fff",
@@ -25,10 +26,21 @@ function AppSider(props) {
     setActiveItem(itemId);
   };
 
+  const handleLogoutModal = () => {
+    dispatch(showModal({ modalType: "deleteBranchModal" }));
+  };
+
   const handleLogout = () => {
     dispatch(logoutSuccess());
     navigate("/login");
   };
+
+  // export const menuItems = [
+  //   { id: "menu", label: "Меню", img: menuIcon },
+  //   { id: "warehouse", label: "Склад", img: warehouseIcon },
+  //   { id: "branches", label: "Филиалы", img: branchesIcon },
+  //   { id: "employees", label: "Сотрудники", img: employeesIcon },
+  // ];
 
   return (
     <Layout.Sider width="14%" style={siderStyle}>
@@ -37,17 +49,22 @@ function AppSider(props) {
         <span className={styles.primary}>cafe</span>
       </div>
       <div className={styles.menuBlock}>
-        {/*переделать на NAV*/}
         <div>
           <ul className={styles.menuList}>
             {menuItems.map((item) => (
               <NavLink
+                to={`/${item.id}`}
                 key={item.id}
                 // className={`${styles.menuItem} ${
                 //   activeItem === item.id ? styles.menuItem__active : ""
                 // }`}
-                className={styles.menuItem}
-                activeClassName={styles.menuItem__active}
+
+                className={({ isActive }) =>
+                  [
+                    styles.menuItem,
+                    isActive ? styles.menuItem__active : styles.menuItem,
+                  ].join(" ")
+                }
                 onClick={() => handleClick(item.id)}
               >
                 <img
@@ -61,7 +78,7 @@ function AppSider(props) {
           </ul>
         </div>
         <div className={styles.sider__buttonExit}>
-          <button onClick={handleLogout}>
+          <button onClick={handleLogoutModal}>
             <img src={exitIcon} alt="exitIcon" />
             Выйти
           </button>

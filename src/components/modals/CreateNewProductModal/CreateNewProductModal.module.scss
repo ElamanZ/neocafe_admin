@@ -1,0 +1,150 @@
+.modal,
+.modal__overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__overlay {
+    background: #25252533;
+  }
+
+  &__wrapper {
+    width: 600px;
+    height: 697px;
+    background-color: #fff;
+    border-radius: 30px;
+  }
+
+  &__content {
+    padding: 32px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title,
+  &__subtitle {
+    color: #2a3440;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    margin: 21px 0 18px 0;
+  }
+
+  &__close {
+    width: 32px;
+    cursor: pointer;
+  }
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_label {
+  font-weight: 400;
+  font-size: 16px;
+  color: #5b7e9a;
+  margin-bottom: 10px;
+}
+
+.inputs_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+}
+
+.input {
+  height: 64px;
+  background-color: #ebeff2;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding-left: 16px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.input_name {
+  width: 536px;
+  margin-bottom: 16px;
+}
+
+.amount_wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.amount_input {
+  width: 170px;
+}
+
+.amount_choose {
+  width: 73px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.category_input {
+  width: 252px;
+}
+
+.branch_option {
+  padding-right: 10px;
+  background-color: #ebeff2;
+  width: 252px;
+  height: 56px;
+}
+
+.branch_option:hover {
+  background-color: #ebeff2;
+}
+
+.limit_input,
+.date_input,
+.branch_input {
+  width: 252px;
+}
+
+.modal__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.modal__btn {
+  width: 250px;
+  height: 56px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cancel_btn {
+  color: #35536b;
+  border: 2px solid #35536b;
+  background: #fff;
+}
+
+.submit_btn {
+  color: #fff;
+  background-color: #35536b;
+}

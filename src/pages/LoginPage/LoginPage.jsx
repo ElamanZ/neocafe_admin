@@ -67,6 +67,8 @@ function LoginPage(props) {
       console.log(resp);
       navigate("/main");
     } catch (error) {
+      setIsAdminError(true);
+      setIsPasswordError(true);
       console.log(error);
     }
 
@@ -106,7 +108,7 @@ function LoginPage(props) {
               <h1>Вход</h1>
               <form className={styles.login_form} onSubmit={handleLogin}>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Логин"
                   value={adminValue}
                   onChange={handleChangeAdminValue}
