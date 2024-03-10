@@ -17,7 +17,10 @@
     "antd": "^5.14.0",
     "axios": "^1.6.7",
     "classnames": "^2.5.1",
+<<<<<<< HEAD
     "formik": "^2.4.5",
+=======
+>>>>>>> Elaman_dev
     "js-cookie": "^3.0.5",
     "private-route-react": "^1.1.12",
     "react": "^18.2.0",

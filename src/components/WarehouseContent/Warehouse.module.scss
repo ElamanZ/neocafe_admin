@@ -1,0 +1,32 @@
+.tableHeader {
+  border-bottom: #EAEAEA 1px solid;
+}
+.tableNav {
+  font-weight: 700;
+  font-size: 16px;
+  color: #5F6366;
+
+}
+.ul {
+  display: flex;
+  gap: 40px;
+}
+.li {
+  padding: 24px;
+  cursor: pointer;
+}
+
+.active {
+  color: #00315D;
+  border-bottom: #00315D 2px solid;
+}
+.liRed {
+  padding: 24px;
+  cursor: pointer;
+  color: #F4A5A5;
+}
+.activeRed {
+  color: #FF4B4B;
+  border-bottom: #FF4B4B 2px solid;
+}
+

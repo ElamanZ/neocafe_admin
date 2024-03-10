@@ -181,6 +181,89 @@ export const branchData = [
   },
 ];
 
+export const warehouseData = [
+  {
+    id: 1,
+    name: "Капучино",
+    quantity: 20,
+    limit: 10,
+    arrival_date: "20.09.2024",
+    branch: "NeoCafe Ala-Too Square"
+  },
+  {
+    id: 2,
+    name: "Эспрессо",
+    quantity: 15,
+    limit: 8,
+    arrival_date: "18.09.2024",
+    branch: "NeoCafe Bishkek Park"
+  },
+  {
+    id: 3,
+    name: "Латте",
+    quantity: 25,
+    limit: 12,
+    arrival_date: "22.09.2024",
+    branch: "NeoCafe Tokmok"
+  },
+  {
+    id: 4,
+    name: "Американо",
+    quantity: 18,
+    limit: 9,
+    arrival_date: "21.09.2024",
+    branch: "NeoCafe Osh"
+  },
+  {
+    id: 5,
+    name: "Мокка",
+    quantity: 22,
+    limit: 11,
+    arrival_date: "19.09.2024",
+    branch: "NeoCafe Jalal-Abad"
+  },
+  {
+    id: 6,
+    name: "Флэт Уайт",
+    quantity: 12,
+    limit: 6,
+    arrival_date: "23.09.2024",
+    branch: "NeoCafe Cholpon-Ata"
+  },
+  {
+    id: 7,
+    name: "Раф",
+    quantity: 30,
+    limit: 15,
+    arrival_date: "24.09.2024",
+    branch: "NeoCafe Kara-Balta"
+  },
+  {
+    id: 8,
+    name: "Какао",
+    quantity: 28,
+    limit: 14,
+    arrival_date: "25.09.2024",
+    branch: "NeoCafe Naryn"
+  },
+  {
+    id: 9,
+    name: "Чай",
+    quantity: 35,
+    limit: 18,
+    arrival_date: "26.09.2024",
+    branch: "NeoCafe Batken"
+  },
+  {
+    id: 10,
+    name: "Горячий шоколад",
+    quantity: 17,
+    limit: 8,
+    arrival_date: "27.09.2024",
+    branch: "NeoCafe Talas"
+  }
+];
+
 // navBar for MainPage
 export const menuItems = [
   { id: "main", label: "Меню", img: menuIcon },
