@@ -264,6 +264,33 @@ export const warehouseData = [
   }
 ];
 
+export const warehouseRawData = [
+  {
+    id: 1,
+    name: "Мука",
+    quantity: 20,
+    limit: 10,
+    arrival_date: "20.09.2024",
+    branch: "NeoCafe Ala-Too Square"
+  },
+    {
+    id: 2,
+    name: "Растительное масло",
+    quantity: 20,
+    limit: 10,
+    arrival_date: "20.09.2024",
+    branch: "NeoCafe Ala-Too Square"
+  },
+    {
+    id: 3,
+    name: "Какао",
+    quantity: 20,
+    limit: 10,
+    arrival_date: "20.09.2024",
+    branch: "NeoCafe Ala-Too Square"
+  },
+];
+
 // navBar for MainPage
 export const menuItems = [
   { id: "main", label: "Меню", img: menuIcon },
