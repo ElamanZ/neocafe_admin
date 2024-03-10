@@ -72,16 +72,37 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
   };
 
   const onFinish = async (values) => {
-    console.log("Received values:", values);
-    // try {
-    //   const response = await newBranch(values);
-    //   console.log("New branch added:", response.data);
-    // } catch (error) {
-    //   console.log("Error adding new branch", error);
-    // }
+    // console.log("Received values:", values);
 
-    dispatch(addBranch(values));
-    handleModalClose();
+    // e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("branchImg", values.branchImg);
+    formData.append("branchName", values.branchName);
+    formData.append("branchAddress", values.branchAddress);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("gisLink", values.gisLink);
+    formData.append("tableCount", values.tableCount);
+
+    if (values.schedule) {
+      Object.entries(values.schedule).forEach(([day, details]) => {
+        formData.append(`schedule[${day}].checked`, details.checked);
+        if (details.checked) {
+          formData.append(`schedule[${day}].startTime`.details.startTime);
+          formData.append(`schedule[${day}].endTime`.details.endTime);
+        }
+      });
+    }
+
+    try {
+      const response = await newBranch(formData);
+      console.log("New branch added:", response.data);
+    } catch (error) {
+      console.log("Error adding new branch", error);
+    }
+
+    // dispatch(addBranch());
+    // handleModalClose();
   };
 
   const closeIcon = (
@@ -175,7 +196,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
             />
           </Form.Item>
           <Form.Item
-            name="2gisLink"
+            name="gisLink"
             label={<span className={styles.modal__label}>Ссылка на 2ГИС</span>}
           >
             <Input
@@ -210,6 +231,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
                 <div className={styles.day}>{day}</div>
                 <input
                   type="checkbox"
+                  name={`schedule[${day}].checked`}
                   checked={details.checked}
                   onChange={(e) => handleCheckboxChange(e, day)}
                   className={styles.checkbox}
@@ -218,6 +240,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
               <div className={styles.timePicker_wrapper}>
                 {details && (
                   <TimePicker
+                    name={`schedule[${day}].startTime`}
                     locale={ruRu}
                     format="HH:mm"
                     placeholder="11:00"
@@ -230,6 +253,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
                 <span className={styles.timePicker_line}> - </span>
                 {details && (
                   <TimePicker
+                    name={`schedule[${day}].endTime`}
                     locale={ruRu}
                     format="HH:mm"
                     placeholder="22:00"
