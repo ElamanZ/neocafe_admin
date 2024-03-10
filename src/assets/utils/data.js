@@ -188,7 +188,7 @@ export const warehouseData = [
     quantity: 20,
     limit: 10,
     arrival_date: "20.09.2024",
-    branch: "NeoCafe Ala-Too Square"
+    branch: "NeoCafe Ala-Too Square",
   },
   {
     id: 2,
@@ -196,7 +196,7 @@ export const warehouseData = [
     quantity: 15,
     limit: 8,
     arrival_date: "18.09.2024",
-    branch: "NeoCafe Bishkek Park"
+    branch: "NeoCafe Bishkek Park",
   },
   {
     id: 3,
@@ -204,7 +204,7 @@ export const warehouseData = [
     quantity: 25,
     limit: 12,
     arrival_date: "22.09.2024",
-    branch: "NeoCafe Tokmok"
+    branch: "NeoCafe Tokmok",
   },
   {
     id: 4,
@@ -212,7 +212,7 @@ export const warehouseData = [
     quantity: 18,
     limit: 9,
     arrival_date: "21.09.2024",
-    branch: "NeoCafe Osh"
+    branch: "NeoCafe Osh",
   },
   {
     id: 5,
@@ -220,7 +220,7 @@ export const warehouseData = [
     quantity: 22,
     limit: 11,
     arrival_date: "19.09.2024",
-    branch: "NeoCafe Jalal-Abad"
+    branch: "NeoCafe Jalal-Abad",
   },
   {
     id: 6,
@@ -228,7 +228,7 @@ export const warehouseData = [
     quantity: 12,
     limit: 6,
     arrival_date: "23.09.2024",
-    branch: "NeoCafe Cholpon-Ata"
+    branch: "NeoCafe Cholpon-Ata",
   },
   {
     id: 7,
@@ -236,7 +236,7 @@ export const warehouseData = [
     quantity: 30,
     limit: 15,
     arrival_date: "24.09.2024",
-    branch: "NeoCafe Kara-Balta"
+    branch: "NeoCafe Kara-Balta",
   },
   {
     id: 8,
@@ -244,7 +244,7 @@ export const warehouseData = [
     quantity: 28,
     limit: 14,
     arrival_date: "25.09.2024",
-    branch: "NeoCafe Naryn"
+    branch: "NeoCafe Naryn",
   },
   {
     id: 9,
@@ -252,7 +252,7 @@ export const warehouseData = [
     quantity: 35,
     limit: 18,
     arrival_date: "26.09.2024",
-    branch: "NeoCafe Batken"
+    branch: "NeoCafe Batken",
   },
   {
     id: 10,
@@ -260,8 +260,8 @@ export const warehouseData = [
     quantity: 17,
     limit: 8,
     arrival_date: "27.09.2024",
-    branch: "NeoCafe Talas"
-  }
+    branch: "NeoCafe Talas",
+  },
 ];
 
 export const warehouseRawData = [
@@ -271,23 +271,42 @@ export const warehouseRawData = [
     quantity: 20,
     limit: 10,
     arrival_date: "20.09.2024",
-    branch: "NeoCafe Ala-Too Square"
+    branch: "NeoCafe Ala-Too Square",
   },
-    {
+  {
     id: 2,
     name: "Растительное масло",
     quantity: 20,
     limit: 10,
     arrival_date: "20.09.2024",
-    branch: "NeoCafe Ala-Too Square"
+    branch: "NeoCafe Ala-Too Square",
   },
-    {
+  {
     id: 3,
     name: "Какао",
     quantity: 20,
     limit: 10,
     arrival_date: "20.09.2024",
-    branch: "NeoCafe Ala-Too Square"
+    branch: "NeoCafe Ala-Too Square",
+  },
+];
+
+export const staffData = [
+  {
+    id: 1,
+    name: "Алихандро",
+    role: "Бармен",
+    branchId: "NeoCafe Dzerzhinka",
+    phone: "99677777777",
+    workSchedule: "Пн, Вт, Чт, Пт",
+  },
+  {
+    id: 2,
+    name: "Алихандро",
+    role: "Официант",
+    branchId: "NeoCafe Dzerzhinka",
+    phone: "99677777777",
+    workSchedule: "Пн, Вт, Чт, Пт",
   },
 ];
 
