@@ -44,3 +44,15 @@ export const getBranch = async (id) => {
     throw error;
   }
 };
+
+// add new category
+
+export const addNewCategory = async (data) => {
+  try {
+    const response = await instanse.post("/api/category/create", data);
+    return response;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

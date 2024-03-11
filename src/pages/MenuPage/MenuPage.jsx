@@ -18,6 +18,7 @@ const itemsPerPage = 6;
 
 function MenuPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [newCategoryName, setNewCategoryName] = useState("");
 
   const categories = useSelector((state) => state.categoryData.category);
   const dispatch = useDispatch();
@@ -57,6 +58,19 @@ function MenuPage() {
 
   const onCancel = () => {
     setIsDeleteModalOpen(false);
+  };
+
+  const handleAddCategory = () => {
+    dispatch(addNewCategory(newCategoryName))
+      .then(() => {
+        // Category added successfully
+        setIsModalOpen(false);
+        setNewCategoryName("");
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error adding category:", error);
+      });
   };
 
   return (
@@ -122,9 +136,7 @@ function MenuPage() {
               <td>{tableBodyData.category}</td>
               <td></td>
               <td></td>
-              <td>
-                {tableBodyData.ingredients}
-              </td>
+              <td>{tableBodyData.ingredients}</td>
               <td>{tableBodyData.price}</td>
               <td>{tableBodyData.branch}</td>
               <td>
@@ -162,6 +174,9 @@ function MenuPage() {
       <NewCategoryModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        onAddCategory={handleAddCategory}
+        newCategoryName={newCategoryName}
+        setNewCategoryName={setNewCategoryName}
       />
       <DeleteCategoryModal
         isOpen={isDeleteModalOpen}

@@ -39,7 +39,7 @@ const CreateNewProductModal = ({ isModalOpen }) => {
               Наименование, категория и стоимость
             </p>
 
-            <Formik>
+            <Formik initialValues={initialValues}>
               <Form>
                 <div className={styles.input_wrapper}>
                   <label htmlFor="name" className={styles.input_label}>
