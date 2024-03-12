@@ -20,12 +20,12 @@
     height: 100vh;
     background-color: #fff;
     border-radius: 30px;
-    overflow: auto;
+    overflow-y: auto;
+    border-radius: 30px;
   }
 
   &__content {
     padding: 32px;
-    overflow: auto;
   }
 
   &__header {
@@ -73,4 +73,124 @@
   font-weight: 400;
   font-size: 16px;
   margin-bottom: 16px;
+}
+
+.schedule {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 70px;
+}
+
+.schedule_title {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.schedule_type {
+  display: flex;
+  justify-content: start;
+  gap: 180px;
+}
+
+.schedule_type h4 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.schedule_line {
+  border-bottom: 1px solid #2a3440;
+  margin: 14px 0 16px 0;
+}
+
+.dayAndCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // gap: 61px;
+  height: 36px;
+}
+
+.day {
+  width: 150px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.checkbox {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background-color: #f5f5f5;
+  border: 1px solid #00315d;
+  border-radius: 4px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  width: 5px;
+  height: 10px;
+  border: 2px solid transparent;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox:checked::before {
+  border-color: #00315d;
+}
+
+.timePicker_wrapper {
+  margin-bottom: 16px;
+  margin-top: 10px;
+}
+
+.timePicker {
+  width: 85px;
+  height: 36px;
+  border: 1px solid #c1c1c3;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  color: #2a3440;
+}
+
+.timePicker_line {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.modal__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.modal__btn {
+  width: 250px;
+  height: 56px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cancel_btn {
+  color: #35536b;
+  border: 2px solid #35536b;
+  background: #fff;
+}
+
+.submit_btn {
+  color: #fff;
+  background-color: #35536b;
 }

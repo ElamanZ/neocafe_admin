@@ -33,33 +33,33 @@ function NewCategoryModal({ isOpen, onClose }) {
     formState: { errors },
     reset,
   } = useForm();
-  // const onSubmit = (data) => {
-  //     dispatch(addCategory(data.category));
-  //     alert(`Новая категория: ${data.category}`);
-  //     reset();
-  //     onClose();
-  // };
-
-  // const onCancel = () => {
-  //     reset();
-  //     onClose();
-  // };
-
-  const onSubmit = async (data) => {
-    try {
-      await addNewCategory(data.category);
-      alert(`Новая категория: ${data.category}`);
-      reset();
-      onClose();
-    } catch (error) {
-      console.error("Error adding category:", error);
-    }
+  const onSubmit = (data) => {
+    dispatch(addCategory(data.category));
+    alert(`Новая категория: ${data.category}`);
+    reset();
+    onClose();
   };
 
   const onCancel = () => {
     reset();
     onClose();
   };
+
+  // const onSubmit = async (data) => {
+  //   try {
+  //     await addNewCategory(data.category);
+  //     alert(`Новая категория: ${data.category}`);
+  //     reset();
+  //     onClose();
+  //   } catch (error) {
+  //     console.error("Error adding category:", error);
+  //   }
+  // };
+
+  // const onCancel = () => {
+  //   reset();
+  //   onClose();
+  // };
 
   return (
     <Modal
