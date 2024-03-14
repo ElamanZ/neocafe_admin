@@ -61,6 +61,7 @@ const CreateNewProductModal = ({ isModalOpen }) => {
                     <div className={styles.amount_wrapper}>
                       <Field
                         placeholder="70"
+                        name="amount"
                         className={classNames(
                           styles.input,
                           styles.amount_input

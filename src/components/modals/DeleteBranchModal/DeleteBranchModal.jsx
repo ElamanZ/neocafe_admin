@@ -9,15 +9,15 @@ import { useNavigate, NavLink } from "react-router-dom";
 
 const DeleteBranchModal = () => {
   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleModalClose = () => {
     dispatch(hideModal());
   };
 
-  //   const handleLogout = () => {
-  //     dispatch(logoutSuccess());
-  //     navigate("/login");
-  //   };
+  // const handleLogout = () => {
+  //   dispatch(logoutSuccess());
+  //   navigate("/login");
+  // };
 
   return (
     <div className={styles.modal}>

@@ -1,10 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { login } from "../../api/index";
+import Cookies from "js-cookie";
 
 const initialState = {
   isAuthenticated: false,
   token: null,
+  error: null,
 };
+
+// const token = data.token;
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
@@ -24,16 +28,32 @@ const userSlice = createSlice({
   reducers: {
     loginSuccess(state, action) {
       state.isAuthenticated = true;
+
       state.token = action.payload.token;
+      state.error = null;
+      Cookies.set("token", action.payload.token, { expires: 10 });
     },
     logoutSuccess(state) {
       state.isAuthenticated = false;
       state.token = null;
+      Cookies.remove("token");
     },
   },
+  loginFailure(state, action) {
+    state.isAuthenticated = false;
+    state.token = null;
+    state.error = action.payload;
+    Cookies.remove("token");
+  },
+
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.user = action.payload;
+      console.log(action);
+      console.log(action.payload);
+      state.isAuthenticated = true;
+      // state.token = action.payload.token;
+      state.error = null;
+      Cookies.set("token", action.payload.token, { expires: 10 });
     });
   },
 });

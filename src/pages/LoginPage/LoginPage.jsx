@@ -5,8 +5,9 @@ import eyeIconNoVisible from "../../assets/images/login/Eye_NoVisible.svg";
 import login_picture from "../../assets/images/login/LoginPicture.png";
 import { useNavigate } from "react-router";
 import Button from "../../components/buttons/Button.jsx";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../api/authCookie.js";
+import { useDispatch, useSelector } from "react-redux";
+// import { loginUser } from "../../api/authCookie.js";
+import { loginSuccess, loginUser } from "../../redux/slices/UserSlice.js";
 import classNames from "classnames";
 
 function LoginPage(props) {
@@ -18,6 +19,7 @@ function LoginPage(props) {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuthentificated = useSelector((state) => state.user.isAuthenticated);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -26,12 +28,12 @@ function LoginPage(props) {
 
   const handleChangeAdminValue = (e) => {
     setAdminValue(e.target.value);
-    setIsAdminError(false);
+    // setIsAdminError(false);
   };
 
   const handleChangePasswordValue = (e) => {
     setPasswordValue(e.target.value);
-    setIsPasswordError(false);
+    // setIsPasswordError(false);
   };
 
   // const loginData = {
@@ -64,8 +66,17 @@ function LoginPage(props) {
 
     try {
       const resp = await dispatch(loginUser(userCredentials));
+      if (resp && resp.token) {
+        setIsAdminError(false);
+        setIsPasswordError(false);
+        navigate("/main");
+      } else {
+        setIsAdminError(true);
+        setIsPasswordError(true);
+      }
+
       console.log(resp);
-      navigate("/main");
+      // navigate("/main");
     } catch (error) {
       setIsAdminError(true);
       setIsPasswordError(true);

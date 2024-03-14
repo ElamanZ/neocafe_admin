@@ -50,8 +50,8 @@ function RawMaterials(props) {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((wareHouseRawData, index) => (
-            <tr key={wareHouseRawData.id}>
+          {currentItems.map((warehouseRawData, index) => (
+            <tr key={warehouseRawData.id}>
               <td className={styles.table__numSymbol}>
                 №{indexOfFirstItem + index + 1}
               </td>

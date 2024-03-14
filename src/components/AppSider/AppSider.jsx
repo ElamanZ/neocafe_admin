@@ -9,7 +9,7 @@ import styles from "../AppSider/AppSider.module.scss";
 import { menuItems } from "../../assets/utils/data.js";
 import { logoutSuccess } from "../../redux/slices/UserSlice.js";
 import { useDispatch } from "react-redux";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { showModal } from "../../redux/slices/modalSlice.js";
 
 const siderStyle = {
@@ -20,7 +20,7 @@ const siderStyle = {
 function AppSider(props) {
   const [activeItem, setActiveItem] = useState(menuItems[0].id);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleClick = (itemId) => {
     setActiveItem(itemId);
@@ -30,10 +30,10 @@ function AppSider(props) {
     dispatch(showModal({ modalType: "deleteBranchModal" }));
   };
 
-  const handleLogout = () => {
-    dispatch(logoutSuccess());
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   dispatch(logoutSuccess());
+  //   navigate("/login");
+  // };
 
   // export const menuItems = [
   //   { id: "menu", label: "Меню", img: menuIcon },
