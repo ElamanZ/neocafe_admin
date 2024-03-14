@@ -66,14 +66,10 @@ function LoginPage(props) {
 
     try {
       const resp = await dispatch(loginUser(userCredentials));
-      if (resp && resp.token) {
-        setIsAdminError(false);
-        setIsPasswordError(false);
-        navigate("/main");
-      } else {
-        setIsAdminError(true);
-        setIsPasswordError(true);
-      }
+
+      setIsAdminError(false);
+      setIsPasswordError(false);
+      navigate("/main");
 
       console.log(resp);
       // navigate("/main");

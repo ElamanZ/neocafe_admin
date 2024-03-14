@@ -5,19 +5,19 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../../redux/slices/modalSlice";
 import { logoutSuccess } from "../../../redux/slices/UserSlice";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const DeleteBranchModal = () => {
+const DeleteBranchModal = ({ navigate }) => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   const handleModalClose = () => {
     dispatch(hideModal());
   };
 
-  // const handleLogout = () => {
-  //   dispatch(logoutSuccess());
-  //   navigate("/login");
-  // };
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+    navigate("/login");
+  };
 
   return (
     <div className={styles.modal}>
