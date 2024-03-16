@@ -10,7 +10,7 @@ import downIcon2 from "../../assets/images/table/dropDownVVerh.svg";
 import trashIcon from "../../assets/images/table/mdi_delete-outline.svg";
 import editIcon from "../../assets/images/table/mdi_edit.svg";
 import deleteIcon from "../../assets/images/table/mdi_delete.svg";
-import { deleteCategory } from "../../redux/slices/CategoryMenuSlice";
+import { deleteCategory } from "../../redux/slices/categoryMenuSlice";
 import NewCategoryModal from "../../components/modals/NewCategoryModal/NewCategoryModal.jsx";
 import DeleteCategoryModal from "../../components/modals/DeleteCategoryModal/DeleteCategoryModal.jsx";
 

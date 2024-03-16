@@ -5,6 +5,15 @@ const initialState = {
   category: ["Кофе", "Десерты", "Коктейли", "Выпечка", "Чай"],
 };
 
+export const addNewCategoryAsync = createAsyncThunk(
+  "addNewCategory",
+  async (categoryData) => {
+    const response = await addNewCategory(categoryData);
+    console.log(response);
+    return response;
+  }
+);
+
 export const categorySlice = createSlice({
   name: "categoryMenuData",
   initialState,
@@ -20,11 +29,11 @@ export const categorySlice = createSlice({
     },
   },
 
-  //   extraReducers: (builder) => {
-  //     builder.addCase(addNewCategory.fulfilled, (state, action) => {
-  //       state.category.push(action.payload);
-  //     });
-  //   },
+  extraReducers: (builder) => {
+    builder.addCase(addNewCategoryAsync.fulfilled, (state, action) => {
+      state.category.push(action.payload);
+    });
+  },
 });
 
 // export const { deleteCategory, addNewCategory } = categorySlice.actions;

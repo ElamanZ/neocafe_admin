@@ -11,7 +11,7 @@ import { Pagination } from "antd";
 import { warehouseRawData } from "../../assets/utils/data.js";
 import NewCategoryModal from "../modals/NewCategoryModal/NewCategoryModal.jsx";
 import DeleteCategoryModal from "../modals/DeleteCategoryModal/DeleteCategoryModal.jsx";
-import { deleteCategory } from "../../redux/slices/CategoryMenuSlice.js";
+import { deleteCategory } from "../../redux/slices/categoryMenuSlice.js";
 
 const itemsPerPage = 10;
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import Button from "../../components/buttons/Button.jsx";
 import { useDispatch, useSelector } from "react-redux";
 // import { loginUser } from "../../api/authCookie.js";
-import { loginSuccess, loginUser } from "../../redux/slices/UserSlice.js";
+import { loginSuccess, loginUser } from "../../redux/slices/userSlice.js";
 import classNames from "classnames";
 
 function LoginPage(props) {
@@ -35,16 +35,6 @@ function LoginPage(props) {
     setPasswordValue(e.target.value);
     // setIsPasswordError(false);
   };
-
-  // const loginData = {
-  //   login: adminValue,
-  //   password: passwordValue,
-  // };
-
-  //   const clickLogBtn = () => {
-  //     navigate("/main");
-  //     return console.log(loginData);
-  //   };
 
   const handleLogin = async (e) => {
     e.preventDefault();

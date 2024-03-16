@@ -26,7 +26,7 @@ const { RangePicker } = TimePicker;
 const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
   const [form] = Form.useForm();
   const [selectedImage, setSelectedImage] = useState(null);
-  const [schedule, setSchedule] = useState({
+  const [workScheduleDto, setSchedule] = useState({
     Понедельник: { checked: false, startTime: null, endTime: null },
     Вторник: { checked: false, startTime: null, endTime: null },
     Среда: { checked: false, startTime: null, endTime: null },
@@ -53,9 +53,9 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
 
   const handleTimeChange = (time, day, type) => {
     setSchedule({
-      ...schedule,
+      ...workScheduleDto,
       [day]: {
-        ...schedule[day],
+        ...workScheduleDto[day],
         [type]: time,
       },
     });
@@ -63,9 +63,9 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
 
   const handleCheckboxChange = (e, day) => {
     setSchedule({
-      ...schedule,
+      ...workScheduleDto,
       [day]: {
-        ...schedule[day],
+        ...workScheduleDto[day],
         checked: e.target.checked,
       },
     });
@@ -77,22 +77,41 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
     // e.preventDefault();
 
     const formData = new FormData();
-    formData.append("branchImg", values.branchImg);
-    formData.append("branchName", values.branchName);
-    formData.append("branchAddress", values.branchAddress);
+    formData.append("image", values.image);
+    formData.append("name", values.name);
+    formData.append("address", values.address);
     formData.append("phoneNumber", values.phoneNumber);
-    formData.append("gisLink", values.gisLink);
+    formData.append("gisUrl", values.gisUrl);
     formData.append("tableCount", values.tableCount);
 
-    if (values.schedule) {
-      Object.entries(values.schedule).forEach(([day, details]) => {
-        formData.append(`schedule[${day}].checked`, details.checked);
-        if (details.checked) {
-          formData.append(`schedule[${day}].startTime`.details.startTime);
-          formData.append(`schedule[${day}].endTime`.details.endTime);
-        }
-      });
-    }
+    const workScheduleDto = [];
+
+    Object.entries(values.workScheduleDto).forEach(([day, details]) => {
+      if (details.checked) {
+        workScheduleDto.push({
+          dayOfWeek: day,
+          startTime: details.startTime,
+          endTime: details.endTime,
+        });
+      }
+    });
+
+    formData.append("workScheduleDto", JSON.stringify(workScheduleDto));
+
+    // workScheduleDto.forEach((schedule, index) => {
+    //   formData.append(
+    //     `workScheduleDto[${index}].dayOfWeek`,
+    //     schedule.dayOfWeek
+    //   );
+    //   formData.append(
+    //     `workScheduleDto[${index}].startTime`,
+    //     schedule.startTime
+    //   );
+    //   formData.append(`workScheduleDto[${index}].endTime`, schedule.endTime);
+    // });
+
+    console.log("Form Data:", formData);
+    console.log(values);
 
     try {
       const response = await newBranch(formData);
@@ -127,7 +146,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
       <div className={styles.modalContainer}>
         <Form form={form} onFinish={onFinish} layout="vertical">
           <Form.Item
-            name="branchImg"
+            name="image"
             label={
               <p className={styles.imgUploadTitle}>
                 Добавьте фотографию филиала
@@ -167,7 +186,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
           </Form.Item>
           <h3 className={styles.modal__subtitle}>Название и адрес</h3>
           <Form.Item
-            name="branchName"
+            name="name"
             label={
               <span className={styles.modal__label}>Название кофейни</span>
             }
@@ -178,7 +197,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
             />
           </Form.Item>
           <Form.Item
-            name="branchAddress"
+            name="address"
             label={<span className={styles.modal__label}>Адрес</span>}
           >
             <Input
@@ -196,7 +215,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
             />
           </Form.Item>
           <Form.Item
-            name="gisLink"
+            name="gisUrl"
             label={<span className={styles.modal__label}>Ссылка на 2ГИС</span>}
           >
             <Input
@@ -225,13 +244,13 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
           </div>
           <div className={styles.schedule_line}></div>
 
-          {Object.entries(schedule).map(([day, details]) => (
+          {Object.entries(workScheduleDto).map(([day, details]) => (
             <div key={day} className={styles.schedule}>
               <div className={styles.dayAndCheckbox}>
                 <div className={styles.day}>{day}</div>
                 <input
                   type="checkbox"
-                  name={`schedule[${day}].checked`}
+                  name={`workScheduleDto[${day}].checked`}
                   checked={details.checked}
                   onChange={(e) => handleCheckboxChange(e, day)}
                   className={styles.checkbox}
@@ -240,7 +259,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
               <div className={styles.timePicker_wrapper}>
                 {details && (
                   <TimePicker
-                    name={`schedule[${day}].startTime`}
+                    name={`workScheduleDto[${day}].startTime`}
                     locale={ruRu}
                     format="HH:mm"
                     placeholder="11:00"
@@ -253,7 +272,7 @@ const AddNewBranchModal = ({ onCancel, isModalOpen }) => {
                 <span className={styles.timePicker_line}> - </span>
                 {details && (
                   <TimePicker
-                    name={`schedule[${day}].endTime`}
+                    name={`workScheduleDto[${day}].endTime`}
                     locale={ruRu}
                     format="HH:mm"
                     placeholder="22:00"

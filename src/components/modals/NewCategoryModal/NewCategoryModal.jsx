@@ -6,9 +6,10 @@ import styles from "./NewCategoryModal.module.scss";
 import styleInput from "../../Input/Input.module.scss";
 import { useForm } from "react-hook-form";
 import HeaderModal from "../HeaderModal/HeaderModal.jsx";
-import { addCategory } from "../../../redux/slices/CategoryMenuSlice.js";
+import { addCategory } from "../../../redux/slices/categoryMenuSlice.js";
 import { useDispatch } from "react-redux";
 import { addNewCategory } from "../../../api/index.js";
+import { addNewCategoryAsync } from "../../../redux/slices/categoryMenuSlice.js";
 
 const style = {
   position: "absolute",
@@ -33,33 +34,33 @@ function NewCategoryModal({ isOpen, onClose }) {
     formState: { errors },
     reset,
   } = useForm();
-  const onSubmit = (data) => {
-    dispatch(addCategory(data.category));
-    alert(`Новая категория: ${data.category}`);
-    reset();
-    onClose();
-  };
-
-  const onCancel = () => {
-    reset();
-    onClose();
-  };
-
-  // const onSubmit = async (data) => {
-  //   try {
-  //     await addNewCategory(data.category);
-  //     alert(`Новая категория: ${data.category}`);
-  //     reset();
-  //     onClose();
-  //   } catch (error) {
-  //     console.error("Error adding category:", error);
-  //   }
+  // const onSubmit = (data) => {
+  //   dispatch(addCategory(data.category));
+  //   alert(`Новая категория: ${data.category}`);
+  //   reset();
+  //   onClose();
   // };
 
   // const onCancel = () => {
   //   reset();
   //   onClose();
   // };
+
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(addNewCategoryAsync(data.category));
+      alert(`Новая категория: ${data.category}`);
+      reset();
+      onClose();
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
+
+  const onCancel = () => {
+    reset();
+    onClose();
+  };
 
   return (
     <Modal

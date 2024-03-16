@@ -7,7 +7,7 @@ import employeesIcon from "../../assets/images/appSlider/mdi_employees.svg";
 import exitIcon from "../../assets/images/appSlider/mdi_exit.svg";
 import styles from "../AppSider/AppSider.module.scss";
 import { menuItems } from "../../assets/utils/data.js";
-import { logoutSuccess } from "../../redux/slices/UserSlice.js";
+import { logoutSuccess } from "../../redux/slices/userSlice.js";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { showModal } from "../../redux/slices/modalSlice.js";

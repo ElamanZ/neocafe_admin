@@ -4,7 +4,7 @@ import mdi_closeBlack from "../../../assets/images/appHeader/mdi_closeBlack.svg"
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../../redux/slices/modalSlice";
-import { logoutSuccess } from "../../../redux/slices/UserSlice";
+import { logoutSuccess } from "../../../redux/slices/userSlice";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const DeleteBranchModal = ({ navigate }) => {
