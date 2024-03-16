@@ -49,7 +49,7 @@ export const newBranch = async (branchData) => {
   }
 };
 
-export const getBranch = async (id) => {
+export const getBranchById = async (id) => {
   try {
     const response = await instanse.get("/api/branch/{id}", id);
 
@@ -57,6 +57,34 @@ export const getBranch = async (id) => {
   } catch (error) {
     console.log("Could not get branches", error);
     throw error;
+  }
+};
+
+export const editBranch = async (id) => {
+  try {
+    const response = await instanse.put("/api/branch/{id}", id);
+    return response;
+  } catch (error) {
+    console.log("Error edit branch:", error);
+    throw error;
+  }
+};
+
+export const deleteBranch = async (id) => {
+  try {
+    const response = instanse.delete("/api/branch/{id}", id);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getListOfBranches = async (data) => {
+  try {
+    const response = instanse.get("/api/branch/listOfBranches");
+    return response;
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -69,5 +97,32 @@ export const addNewCategory = async (data) => {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+export const getCategoryById = async (id) => {
+  try {
+    const response = await instanse.get("/api/category/{name}", id);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllCategories = async (data) => {
+  try {
+    const response = await instanse.get("/api/category/all", data);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteCategory = async (id) => {
+  try {
+    const response = await instanse.delete("/api/category/{id}");
+    return response;
+  } catch (error) {
+    console.log(error);
   }
 };
